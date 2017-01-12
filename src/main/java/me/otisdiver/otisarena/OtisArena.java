@@ -4,6 +4,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import me.otisdiver.otisarena.event.JoinQuit;
 import me.otisdiver.otisarena.event.Kill;
+import me.otisdiver.otisarena.event.LobbyGuard;
 import me.otisdiver.otisarena.event.StartingCanceller;
 import me.otisdiver.otisarena.game.Game;
 
