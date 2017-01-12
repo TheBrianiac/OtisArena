@@ -23,6 +23,7 @@ public class OtisArena extends JavaPlugin {
         new JoinQuit(this);
         new StartingCanceller(this);
         new Kill(this);
+        new LobbyGuard(this);
     }
     
     public Game getGame() {
