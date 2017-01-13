@@ -1,1 +1,17 @@
 # Default plugin configuration!
+worlds:
+    # World name on this line
+    example:
+        spawns:
+            # Name the location what you'd like, for organization
+            a:
+            # X coordinate
+            - -10
+            # Y coordinate
+            - 100
+            # Z coordinate
+            - -10
+            randomname:
+            - 10
+            - 100
+            - -10
