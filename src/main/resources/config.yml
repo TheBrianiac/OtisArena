@@ -6,20 +6,20 @@ worlds:
             # Name the location what you'd like, for organization
             a:
             # X coordinate
-            - 669.50
+                x: 669.50
             # Y coordinate
-            - 8.50
+                y: 8.50
             # Z coordinate
-            - -293.50
+                z: -293.50
             b:
-            - 619.50
-            - 8.50
-            - -213.50
+                x: 619.50
+                y: 8.50
+                z: -213.50
             c:
-            - 569.50
-            - 8.50
-            - -293.50
+                x: 569.50
+                y: 8.50
+                z: -293.50
             d:
-            - 619.50
-            - 8.50
-            - -313.50
+                x: 619.50
+                y: 8.50
+                z: -313.50
