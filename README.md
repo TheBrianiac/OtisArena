@@ -12,7 +12,7 @@ I've already tested this extensively, but if you don't want to take my word for 
 4. Install the compiled .jar file to your server's plugins directory. Run the server and then enter 'stop'.
 5. Update plugins/OtisArena/config.yml with the details for your world(s).
   1. If you use Phizzle's map (see above), the default config will cover it.
-6. Get a few friends (or cats than can walk over keyboards), log into your server, and play the game! The team with the most kills after 6 minutes wins.
+6. Get a few friends (or cats that can walk over keyboards), log into your server, and play the game! The team with the most kills after 6 minutes wins.
 7. If you find any bugs, [open an issue](https://github.com/TheBrianiac/OtisArena/issues/new) - I'll get an email.
 
 ## CONTRIBUTIONS ##
