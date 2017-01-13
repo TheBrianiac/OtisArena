@@ -7,7 +7,8 @@ I've already tested this extensively, but if you don't want to take my word for 
 
 1. [Set up](https://www.spigotmc.org/wiki/spigot-installation/) a Spigot test server for Minecraft 1\.11\.
 2. Create a lobby world and an arena world or two.
-  1. If you need an arena, you can download this [free map](https://www.youtube.com/watch?v=K9rfzmMv5h0) by Phizzle and add the folder inside the .rar archive to your server's main directory.
+  1. Lobby world must be named "lobby" - make sure "level-name" is set to "lobby"in your server.properties.
+  2. If you need an arena, you can download this [free map](https://www.youtube.com/watch?v=K9rfzmMv5h0) by Phizzle and add the folder inside the .rar archive to your server's main directory.
 3. Download the project and build it with maven (run 'mvn compile' from the project folder - details [here](https://spring.io/guides/gs/maven/)).
 4. Install the compiled .jar file to your server's plugins directory. Run the server and then enter 'stop'.
 5. Update plugins/OtisArena/config.yml with the details for your world(s).
