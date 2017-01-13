@@ -1,17 +1,25 @@
 # Default plugin configuration!
 worlds:
     # World name on this line
-    example:
+    DMArena:
         spawns:
             # Name the location what you'd like, for organization
             a:
             # X coordinate
-            - -10
+            - 669.50
             # Y coordinate
-            - 100
+            - 8.50
             # Z coordinate
-            - -10
-            randomname:
-            - 10
-            - 100
-            - -10
+            - -293.50
+            b:
+            - 619.50
+            - 8.50
+            - -213.50
+            c:
+            - 569.50
+            - 8.50
+            - -293.50
+            d:
+            - 619.50
+            - 8.50
+            - -313.50
