@@ -1,5 +1,6 @@
 package me.otisdiver.otisarena.game;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
@@ -26,7 +27,7 @@ public class Game {
     private final Team[] teams;
     private World activeWorld;
     // a list of all people playing (people conditionally added by events.Join)
-    private List<Player> activePlayers;
+    private ArrayList<Player> activePlayers = new ArrayList<Player>();
     
     // Methods //
     
@@ -56,7 +57,7 @@ public class Game {
     /** Updates the list of players participating in minigames.
      * 
      * @param value the new value of activePlayers */
-    public void setActivePlayers(List<Player> value) {
+    public void setActivePlayers(ArrayList<Player> value) {
         activePlayers = value;
     }
     

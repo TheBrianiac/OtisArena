@@ -1,5 +1,6 @@
 package me.otisdiver.otisarena.game;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.bukkit.ChatColor;
@@ -11,7 +12,7 @@ public class Team {
     
     private ChatColor color;
     
-    private Collection<Player> players;
+    private ArrayList<Player> players = new ArrayList<Player>();
     
     private int score = 0;
     
@@ -30,7 +31,7 @@ public class Team {
         return color;
     }
     
-    public Collection<Player> getPlayers() {
+    public ArrayList<Player> getPlayers() {
         return players;
     }
     
