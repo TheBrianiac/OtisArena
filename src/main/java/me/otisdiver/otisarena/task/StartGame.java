@@ -14,13 +14,13 @@ import me.otisdiver.otisarena.game.GameState;
 
 public class StartGame extends Task {
     
-    private final String countdownMessage = ChatColor.AQUA + "Game starting in " + ChatColor.YELLOW + "%s seconds!";
+    private final String countdownMessage = ChatColor.AQUA + " Game starting in " + ChatColor.YELLOW + "%s seconds!";
     
     private final int gameLengthTicks = 360 * 20; // average 20 ticks/second
     
     private final int warningSeconds = 30;
     
-    private final String warningMessage = "" + ChatColor.RED + warningSeconds + " seconds remaining!";
+    private final String warningMessage = " " + ChatColor.RED + warningSeconds + " seconds remaining!";
 
     private final String worldName;
     
@@ -41,8 +41,12 @@ public class StartGame extends Task {
         // go to next state - LOADING
         GameState.advance();
         
+        // assign teams
+        game.distributePlayersTeams(game.getActivePlayers());
+        
         // load the (random) arena
         World arena = Bukkit.createWorld(new WorldCreator(worldName));
+        game.setActiveWorld(arena);
         
         // send players into game world
         for (Player player : game.getActivePlayers()) {
