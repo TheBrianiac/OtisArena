@@ -56,6 +56,8 @@ public class EndGame extends Task {
         game.resetTeams();
         GameState.advance();
         
+        main.startGameCountdowns();
+        
     }
 
 }

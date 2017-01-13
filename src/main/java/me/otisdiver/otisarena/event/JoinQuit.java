@@ -10,6 +10,7 @@ import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import me.otisdiver.otisarena.ConfigUtils;
 import me.otisdiver.otisarena.OtisArena;
 import me.otisdiver.otisarena.game.Game;
 import me.otisdiver.otisarena.game.GameState;
@@ -88,21 +89,8 @@ public class JoinQuit extends Event {
                 if (joinMessageRecruiting != null)
                 joinMessage = String.format(joinMessageRecruiting, player.getName());
                 
-                // if the game is ready to start
-                if (game.getActivePlayers().size() > minimumPlayers) {
-                    
-                    // start countdowns (20, 15, 10, 5; 4, 3, 2, 1)
-                    interval5 = new Countdown(main, 20, 5, countdownMessage);
-                    interval5.runFuture(20);
-                    
-                    interval1 = new Countdown(main, 4, 1, countdownMessage);
-                    interval1.runFuture(320);
-                    
-                    // start the game after the countdown, 22 sec (* 20 ticks/sec = 440) from now
-                    startGame = new StartGame(main);
-                    startGame.runFuture(440);
-                    
-                }
+                // start countdowns [if enough players reached]
+                startGameCountdowns();
                 
                 break;
             case PREPARING:
@@ -205,9 +193,29 @@ public class JoinQuit extends Event {
     
     private void makeSpectator(Player player) {
         
+        player.teleport(ConfigUtils.getRandomSpawn(game.getActiveWorld()));
+        
         player.setGameMode(GameMode.SPECTATOR);
         
         player.sendMessage(gameInProgress);
+        
+    }
+    
+    public void startGameCountdowns() {
+        
+        // if too many / too few players, stop
+        if (game.getActivePlayers().size() != minimumPlayers) return;
+        
+        // start countdowns (20, 15, 10, 5; 4, 3, 2, 1)
+        interval5 = new Countdown(main, 20, 5, countdownMessage);
+        interval5.runFuture(20);
+        
+        interval1 = new Countdown(main, 4, 1, countdownMessage);
+        interval1.runFuture(340);
+        
+        // start the game after the countdown, 22 sec (* 20 ticks/sec = 440) from now
+        startGame = new StartGame(main);
+        startGame.runFuture(460);
         
     }
     

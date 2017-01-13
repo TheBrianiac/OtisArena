@@ -11,6 +11,7 @@ import me.otisdiver.otisarena.game.Game;
 public class OtisArena extends JavaPlugin {
     
     private Game game;
+    private JoinQuit joinQuit;
     
     public void onEnable() {
         
@@ -21,7 +22,7 @@ public class OtisArena extends JavaPlugin {
         ConfigUtils.initiate(this);
         
         // register event listeners
-        new JoinQuit(this);
+        joinQuit = new JoinQuit(this);
         new StartingCanceller(this);
         new Kill(this);
         new LobbyGuard(this);
@@ -29,6 +30,10 @@ public class OtisArena extends JavaPlugin {
     
     public Game getGame() {
         return game;
+    }
+    
+    public void startGameCountdowns() {
+        joinQuit.startGameCountdowns();
     }
     
 }
