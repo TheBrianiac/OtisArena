@@ -86,7 +86,10 @@ public class ConfigUtils {
         // find a set of coords from the config
         String locationName;
         String pathCoords;
-        List<Double> coords = null;
+        
+        Double x = 0.0;
+        Double y = 10.0;
+        Double z = 0.0;
         
         boolean run = true;
         while(run) {
@@ -95,21 +98,13 @@ public class ConfigUtils {
             // choose a random item from the set of keys
             locationName = randomKey(locations.getKeys(false));
             
-            // get a list of doubles
-            pathCoords = path + locationName;
-            coords = locations.getDoubleList(pathCoords);
-            
-            // if the list is too big, choose a new one
-            if (coords.size() != 3) {
-                Bukkit.getLogger().warning("Invalid configuration value: " + pathCoords);
-                run = true; // (run again)
-            }
+            // get the coords
+            pathCoords = path + "." + locationName;
+            x = locations.getDouble(pathCoords + ".x");
+            y = locations.getDouble(pathCoords + ".y");
+            z = locations.getDouble(pathCoords + ".z");
+            Bukkit.getLogger().info(worldName + x + y + z);
         }
-        
-        // assemble a location
-        Double x = coords.get(1);
-        Double y = coords.get(2);
-        Double z = coords.get(3);
         
         return new Location(world, x, y, z);
     }
