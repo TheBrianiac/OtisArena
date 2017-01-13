@@ -23,6 +23,8 @@ public class Respawn extends Task {
         
         player.setGameMode(GameMode.SURVIVAL);
         player.teleport(ConfigUtils.getRandomSpawn(game.getActiveWorld()));
+        player.setHealth(20.0);
+        player.setFoodLevel(20);
         
     }
     
