@@ -45,16 +45,22 @@ public enum GameState {
             // each case runs setCurrent for the next value in the finite state machine
             case RECRUITING:
                 setCurrent(PREPARING);
+            break;
             case PREPARING:
                 setCurrent(LOADING);
+            break;
             case LOADING:
                 setCurrent(STARTING);
+            break;
             case STARTING:
                 setCurrent(PLAYING);
+            break;
             case PLAYING:
                 setCurrent(UNLOADING);
+            break;
             case UNLOADING:
                 setCurrent(RECRUITING);
+            break;
         }
         
         // debug message
