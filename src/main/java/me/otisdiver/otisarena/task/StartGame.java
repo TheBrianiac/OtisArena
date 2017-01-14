@@ -59,8 +59,11 @@ public class StartGame extends Task {
         // unload the lobby, don't save changes
         Bukkit.unloadWorld(game.getLobby(), false);
         
-        // run a countdown (with a brief delay for thinking)
+        // run a countdown (after 1 second)
         new Countdown(main, 10, 1, countdownMessage).runFuture(10);
+        
+        // advance state after countdown (after 11 seconds)
+        new AdvanceState(main).runFuture(221);
         
         // schedule warning <warningSeconds> seconds before game ends
         new FutureBroadcast(main, warningMessage).runFuture(gameLengthTicks - (warningSeconds * 20));
