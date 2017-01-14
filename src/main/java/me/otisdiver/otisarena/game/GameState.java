@@ -9,9 +9,6 @@ public enum GameState {
     // recruiting players - nothing happening, just waiting to hit min. player count
     RECRUITING,
     
-    // enough players - giving them 20 (+2) seconds to get ready for the game to start
-    PREPARING,
-    
     // loading the world, teleporting players in
     LOADING,
     
@@ -44,9 +41,6 @@ public enum GameState {
         switch (current) {
             // each case runs setCurrent for the next value in the finite state machine
             case RECRUITING:
-                setCurrent(PREPARING);
-            break;
-            case PREPARING:
                 setCurrent(LOADING);
             break;
             case LOADING:

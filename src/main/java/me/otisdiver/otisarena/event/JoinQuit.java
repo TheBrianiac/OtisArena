@@ -93,13 +93,6 @@ public class JoinQuit extends Event {
                 startGameCountdowns();
                 
                 break;
-            case PREPARING:
-                
-                // format the join message, if any (set after the switch)
-                if (joinMessageRecruiting != null)
-                joinMessage = String.format(joinMessageRecruiting, player.getName());
-                
-                break;
             case STARTING:
                 
                 makeSpectator(e.getPlayer());
@@ -161,13 +154,6 @@ public class JoinQuit extends Event {
         switch (state) {
             
             case RECRUITING:
-                
-                // set the quit message, if any (applied after the switch)
-                if (quitMessageRecruiting != null)
-                quitMessage = String.format(quitMessageRecruiting, player.getName());
-                
-                break;
-            case PREPARING:
                 
                 // set the quit message, if any (applied after the switch)
                 if (quitMessageRecruiting != null)
