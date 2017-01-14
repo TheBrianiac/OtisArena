@@ -26,13 +26,8 @@ public class ConfigUtils {
         // save the main class
         main = mainClass;
         
-        // load the config
-        config = main.getConfig();
-        if (config == null) {
-            // create a config.yml and load it again
-            main.saveDefaultConfig();
-            config = main.getConfig();
-        }
+        // create a config if needed
+        main.saveDefaultConfig();
         
         // make a random
         randomSet = new Random();
