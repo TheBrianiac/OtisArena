@@ -1,7 +1,6 @@
 package me.otisdiver.otisarena.game;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
