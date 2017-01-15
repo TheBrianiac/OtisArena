@@ -35,7 +35,7 @@ public class Kill extends Event {
         double health = victim.getHealth() - e.getFinalDamage();
         if (health > 0) return;
         
-        // artifical death (override Minecraft)
+        // artificial death (override Minecraft)
         e.setCancelled(true);
         Bukkit.broadcastMessage(String.format(deathMessage, attacker.getName(), victim.getName()));
         victim.setGameMode(GameMode.SPECTATOR);
