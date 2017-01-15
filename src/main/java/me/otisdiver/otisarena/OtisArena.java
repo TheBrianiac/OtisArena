@@ -1,5 +1,6 @@
 package me.otisdiver.otisarena;
 
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import me.otisdiver.otisarena.event.JoinQuit;
@@ -26,6 +27,12 @@ public class OtisArena extends JavaPlugin {
         new StartingCanceller(this);
         new Kill(this);
         new LobbyGuard(this);
+    }
+    
+    public void onDisable() {
+        
+        // unload world
+        Bukkit.unloadWorld(game.getActiveWorld().getName(), false);
     }
     
     public Game getGame() {
