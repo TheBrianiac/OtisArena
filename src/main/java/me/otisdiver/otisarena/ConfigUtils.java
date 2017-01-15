@@ -11,7 +11,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 public class ConfigUtils {
     
-    private static OtisArena         main;
+    private static OtisArena main;
     
     private static Random randomSet;
     
@@ -66,39 +66,23 @@ public class ConfigUtils {
     
     public static Location getRandomSpawn(World world) {
         
-        String worldName = world.getName();
-        
         // get the config section worlds.[world].spawns
-        StringBuilder pathBuilder = new StringBuilder();
-        pathBuilder.append("worlds.").append(worldName).append(".spawns");
-        String path = pathBuilder.toString();
-        
-        // find all the locations defined for the world
-        ConfigurationSection locations = getConfig().getConfigurationSection(path);
+        StringBuilder path = new StringBuilder();
+        path.append("worlds.").append(world.getName()).append(".spawns");
+        ConfigurationSection locations = getConfig().getConfigurationSection(path.toString());
         
         // find a set of coords from the config
-        String locationName;
-        String pathCoords;
+        path.append(".").append(randomKey(locations.getKeys(false)));
+        String pathCoords = path.toString();
         
-        Double x = 0.0;
-        Double y = 10.0;
-        Double z = 0.0;
+        Bukkit.getLogger().info("Path: " + pathCoords);
         
-        boolean run = true;
-        while(run) {
-            run = false;
-            
-            // choose a random item from the set of keys
-            locationName = randomKey(locations.getKeys(false));
-            
-            // get the coords
-            pathCoords = path + "." + locationName;
-            x = locations.getDouble(pathCoords + ".x");
-            y = locations.getDouble(pathCoords + ".y");
-            z = locations.getDouble(pathCoords + ".z");
-            Bukkit.getLogger().info(worldName + x + y + z);
-        }
+        // build a Location object
+        Double x = locations.getDouble(pathCoords + ".x");
+        Double y = locations.getDouble(pathCoords + ".y");
+        Double z = locations.getDouble(pathCoords + ".z");
         
+        Bukkit.getLogger().info(world.getName() + x + y + z);
         return new Location(world, x, y, z);
     }
     
