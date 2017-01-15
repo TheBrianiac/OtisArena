@@ -72,15 +72,12 @@ public class ConfigUtils {
         ConfigurationSection locations = getConfig().getConfigurationSection(path.toString());
         
         // find a set of coords from the config
-        path.append(".").append(randomKey(locations.getKeys(false)));
-        String pathCoords = path.toString();
-        
-        Bukkit.getLogger().info("Path: " + pathCoords);
+        String spawn = randomKey(locations.getKeys(false));
         
         // build a Location object
-        Double x = locations.getDouble(pathCoords + ".x");
-        Double y = locations.getDouble(pathCoords + ".y");
-        Double z = locations.getDouble(pathCoords + ".z");
+        Double x = locations.getDouble(spawn + ".x");
+        Double y = locations.getDouble(spawn + ".y");
+        Double z = locations.getDouble(spawn + ".z");
         
         Bukkit.getLogger().info(world.getName() + x + y + z);
         return new Location(world, x, y, z);
