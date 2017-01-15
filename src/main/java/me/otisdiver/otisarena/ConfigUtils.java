@@ -12,7 +12,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 public class ConfigUtils {
     
     private static OtisArena         main;
-    private static FileConfiguration config;
     
     private static Random randomSet;
     
@@ -40,7 +39,7 @@ public class ConfigUtils {
     }
     
     public static FileConfiguration getConfig() {
-        return config;
+        return main.getConfig();
     }
     
     private static String randomKey(Set<String> set) {
@@ -60,7 +59,7 @@ public class ConfigUtils {
     public static String getRandomWorld() {
         
         // get all items under the section worlds
-        Set<String> worlds = config.getConfigurationSection("worlds").getKeys(false);
+        Set<String> worlds = getConfig().getConfigurationSection("worlds").getKeys(false);
         
         return randomKey(worlds);
     }
@@ -75,7 +74,7 @@ public class ConfigUtils {
         String path = pathBuilder.toString();
         
         // find all the locations defined for the world
-        ConfigurationSection locations = config.getConfigurationSection(path);
+        ConfigurationSection locations = getConfig().getConfigurationSection(path);
         
         // find a set of coords from the config
         String locationName;
