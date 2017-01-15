@@ -160,7 +160,7 @@ public class JoinQuit extends Event {
                 quitMessage = String.format(quitMessageRecruiting, player.getName());
                 
                 // if this causes the number of players to fall below minimum, stop the count down
-                if (game.getActivePlayers().size() <= minimumPlayers) {
+                if (game.getActivePlayers().size() +1 == minimumPlayers) {
                     
                     // cancel countdowns, their messages, and the game starting
                     interval5.override();
