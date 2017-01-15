@@ -3,14 +3,14 @@ worlds:
     # World name on this line
     DMArena:
         spawns:
-            # Name the location what you'd like, for organization
+            # Name the location what you'd like, it doesn't matter
             a:
-            # X coordinate
+                # X Coordinate
                 x: 669.50
-            # Y coordinate
+                # Y Coordinate
                 y: 8.50
-            # Z coordinate
-                z: -293.50
+                # Z Coordinate
+                z: -263.50
             b:
                 x: 619.50
                 y: 8.50
@@ -18,7 +18,7 @@ worlds:
             c:
                 x: 569.50
                 y: 8.50
-                z: -293.50
+                z: -263.50
             d:
                 x: 619.50
                 y: 8.50
