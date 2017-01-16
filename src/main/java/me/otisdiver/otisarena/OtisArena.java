@@ -7,6 +7,7 @@ import me.otisdiver.otisarena.event.JoinQuit;
 import me.otisdiver.otisarena.event.GameDeath;
 import me.otisdiver.otisarena.event.LobbyGuard;
 import me.otisdiver.otisarena.event.StartingCanceller;
+import me.otisdiver.otisarena.event.WorldGuard;
 import me.otisdiver.otisarena.game.Game;
 
 public class OtisArena extends JavaPlugin {
@@ -27,6 +28,7 @@ public class OtisArena extends JavaPlugin {
         new StartingCanceller(this);
         new GameDeath(this);
         new LobbyGuard(this);
+        new WorldGuard(this);
     }
     
     public void onDisable() {
