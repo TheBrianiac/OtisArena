@@ -56,7 +56,9 @@ public class EndGame extends Task {
         game.resetTeams();
         GameState.advance();
         
-        main.startGameCountdowns();
+        if (game.getActivePlayers().size() >= game.getMinimumPlayers()) {
+            game.start();
+        }
         
     }
 

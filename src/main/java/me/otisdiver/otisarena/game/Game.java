@@ -9,6 +9,10 @@ import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 
+import me.otisdiver.otisarena.OtisArena;
+import me.otisdiver.otisarena.task.Countdown;
+import me.otisdiver.otisarena.task.StartGame;
+
 public class Game {
     
     // Configurables //
@@ -22,17 +26,29 @@ public class Game {
     // game starts 20 seconds after this # of players is met
     private final int minimumPlayers = 2;
     
+    // message format for countdown messages
+    private final String countdownMessage = ChatColor.DARK_GREEN + " Game starting in " + ChatColor.YELLOW + "%d" + ChatColor.DARK_GREEN + " seconds!";
+    
     // Other Class Members // 
     
-    private final Team[] teams;
-    private World activeWorld;
+    private OtisArena main;
+    private final Team[]      teams;
+    private World             activeWorld;
+    
     // a list of all people playing (people conditionally added by events.Join)
     private ArrayList<Player> activePlayers = new ArrayList<Player>();
+    
+    // countdown tasks (before game is started)
+    private Countdown interval5;
+    private Countdown interval1;
+    private StartGame startGame;
     
     // Methods //
     
     /** Game contains all methods necessary to operate the game. */
-    public Game() {
+    public Game(OtisArena main) {
+        
+        this.main = main;
         
         // create the teams
         teams = new Team[] {
@@ -59,6 +75,28 @@ public class Game {
      * @param value the new value of activePlayers */
     public void setActivePlayers(ArrayList<Player> value) {
         activePlayers = value;
+    }
+    
+    /** Starts the countdown for the game to start. */
+    public void start() {
+        
+        // start countdowns (20, 15, 10, 5; 4, 3, 2, 1)
+        interval5 = new Countdown(main, 20, 5, countdownMessage);
+        interval5.runFuture(20);
+        
+        interval1 = new Countdown(main, 4, 1, countdownMessage);
+        interval1.runFuture(340);
+        
+        // start the game after the countdown, 22 sec (* 20 ticks/sec = 440) from now
+        startGame = new StartGame(main);
+        startGame.runFuture(460);
+    }
+    
+    /** Cleanly stops the game and any associated tasks. */
+    public void stop() {
+        interval5.override();
+        interval1.override();
+        startGame.cancel();
     }
     
     /** Get a team object with a given team chatcolor.
@@ -116,7 +154,7 @@ public class Game {
         
         int loops = 0;
         // iterate through all the players on the list of active players
-        for (Player player : activePlayers) {
+        for(Player player : activePlayers) {
             
             // results in alternating values of 0 or 1 (or higher values if >2 teams are configured) 
             index = loops % teams.length;
@@ -157,7 +195,7 @@ public class Game {
     public void resetTeams() {
         
         // reset all teams
-        for (int i = 0; i < teams.length; i++) {
+        for(int i = 0; i < teams.length; i++) {
             teams[i].reset();
         }
     }
@@ -169,7 +207,7 @@ public class Game {
         Team team = null;
         int score = -1;
         
-        for (int i = 0; i < teams.length; i++) {
+        for(int i = 0; i < teams.length; i++) {
             
             Team forTeam = teams[i];
             int forScore = forTeam.getScore();
@@ -200,11 +238,11 @@ public class Game {
     public String getLobby() {
         return lobbyName;
     }
-
+    
     public World getActiveWorld() {
         return activeWorld;
     }
-
+    
     public void setActiveWorld(World activeWorld) {
         this.activeWorld = activeWorld;
     }

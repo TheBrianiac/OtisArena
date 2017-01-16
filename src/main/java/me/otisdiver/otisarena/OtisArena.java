@@ -17,7 +17,7 @@ public class OtisArena extends JavaPlugin {
     public void onEnable() {
         
         // instantiate the game class
-        game = new Game();
+        game = new Game(this);
         
         // load the config
         ConfigUtils.initiate(this);
@@ -37,10 +37,6 @@ public class OtisArena extends JavaPlugin {
     
     public Game getGame() {
         return game;
-    }
-    
-    public void startGameCountdowns() {
-        joinQuit.startGameCountdowns();
     }
     
 }

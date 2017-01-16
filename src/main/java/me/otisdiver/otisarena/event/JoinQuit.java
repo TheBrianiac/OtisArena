@@ -21,9 +21,6 @@ public class JoinQuit extends EasyListener {
     
     // Configurables //
     
-    // message format for countdown messages
-    private final String countdownMessage = ChatColor.DARK_GREEN + " Game starting in " + ChatColor.YELLOW + "%d" + ChatColor.DARK_GREEN + " seconds!";
-    
     // join message when the game isn't recruiting
     private final String joinMessageDefault = null;
     
@@ -44,10 +41,6 @@ public class JoinQuit extends EasyListener {
     private Game game;
     
     private final int minimumPlayers;
-    
-    private Countdown interval5;
-    private Countdown interval1;
-    private StartGame startGame;
     
     /** JoinQuit handles all player join events.
      * 
@@ -90,7 +83,7 @@ public class JoinQuit extends EasyListener {
                 joinMessage = String.format(joinMessageRecruiting, player.getName());
                 
                 // start countdowns [if enough players reached]
-                startGameCountdowns();
+                game.start();
                 
                 break;
             case STARTING:
@@ -161,11 +154,7 @@ public class JoinQuit extends EasyListener {
                 
                 // if this causes the number of players to fall below minimum, stop the count down
                 if (game.getActivePlayers().size() +1 == minimumPlayers) {
-                    
-                    // cancel countdowns, their messages, and the game starting
-                    interval5.override();
-                    interval1.override();
-                    startGame.cancel();
+                    game.stop();
                 }
                 
                 break;
@@ -186,23 +175,4 @@ public class JoinQuit extends EasyListener {
         player.sendMessage(gameInProgress);
         
     }
-    
-    public void startGameCountdowns() {
-        
-        // if too many / too few players, stop
-        if (game.getActivePlayers().size() != minimumPlayers) return;
-        
-        // start countdowns (20, 15, 10, 5; 4, 3, 2, 1)
-        interval5 = new Countdown(main, 20, 5, countdownMessage);
-        interval5.runFuture(20);
-        
-        interval1 = new Countdown(main, 4, 1, countdownMessage);
-        interval1.runFuture(340);
-        
-        // start the game after the countdown, 22 sec (* 20 ticks/sec = 440) from now
-        startGame = new StartGame(main);
-        startGame.runFuture(460);
-        
-    }
-    
 }
