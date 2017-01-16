@@ -75,15 +75,16 @@ public class JoinQuit extends EasyListener {
         }
         
         switch(state) {
-            
             case RECRUITING:
                 
                 // format the join message, if any (this is used after the switch)
                 if (joinMessageRecruiting != null)
                 joinMessage = String.format(joinMessageRecruiting, player.getName());
                 
-                // start countdowns [if enough players reached]
-                game.start();
+                // start game/count-downs (if enough players reached)
+                if (game.getActivePlayers().size() == game.getMinimumPlayers()) {
+                    game.start();
+                }
                 
                 break;
             case STARTING:
