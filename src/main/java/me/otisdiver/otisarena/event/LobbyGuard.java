@@ -14,7 +14,7 @@ public class LobbyGuard extends EasyListener {
     
     private final String lobbyName;
     
-    /** LobbyGuard stops world/human damage in the lobby.
+    /** LobbyGuard stops human damage in the lobby.
      * 
      * @param main instance of JavaPlugin
      */
@@ -24,11 +24,6 @@ public class LobbyGuard extends EasyListener {
     }
     
     // Event handlers
-    
-    @EventHandler(priority = EventPriority.LOW)
-    public void onInteract(PlayerInteractEvent e) {
-        if (inLobby(e.getPlayer())) cancel(e);
-    }
     
     @EventHandler(priority = EventPriority.LOW)
     public void onHunger(FoodLevelChangeEvent e) {
