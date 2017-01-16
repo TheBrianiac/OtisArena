@@ -53,7 +53,7 @@ public class Team {
     
     /** Removes all players and resets the score. */
     public void reset() {
-        players = null;
+        players.clear();
         score = 0;
     }
 
