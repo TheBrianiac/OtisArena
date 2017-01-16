@@ -48,7 +48,7 @@ public class Team {
     
     /** Increment the team's score. */
     public void addScore() {
-        score = score++;
+        score++;
     }
     
     /** Removes all players and resets the score. */
