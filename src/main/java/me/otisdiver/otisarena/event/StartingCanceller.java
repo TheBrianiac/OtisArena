@@ -8,7 +8,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import me.otisdiver.otisarena.OtisArena;
 import me.otisdiver.otisarena.game.GameState;
 
-public class StartingCanceller extends Event {
+public class StartingCanceller extends EasyListener {
 
     /** StartingCanceller cancels certain events during the gameplay count down.
      * 

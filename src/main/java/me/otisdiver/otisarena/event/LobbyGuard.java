@@ -10,10 +10,14 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 import me.otisdiver.otisarena.OtisArena;
 
-public class LobbyGuard extends Event {
+public class LobbyGuard extends EasyListener {
     
     private final String lobbyName;
     
+    /** LobbyGuard stops world/human damage in the lobby.
+     * 
+     * @param main instance of JavaPlugin
+     */
     public LobbyGuard(OtisArena main) {
         super(main);
         lobbyName = main.getGame().getLobby();

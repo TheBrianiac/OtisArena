@@ -17,7 +17,7 @@ import me.otisdiver.otisarena.game.GameState;
 import me.otisdiver.otisarena.task.Countdown;
 import me.otisdiver.otisarena.task.StartGame;
 
-public class JoinQuit extends Event {
+public class JoinQuit extends EasyListener {
     
     // Configurables //
     

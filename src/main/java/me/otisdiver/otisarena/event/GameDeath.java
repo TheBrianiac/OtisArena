@@ -11,11 +11,15 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import me.otisdiver.otisarena.OtisArena;
 import me.otisdiver.otisarena.task.Respawn;
 
-public class Kill extends Event {
+public class GameDeath extends EasyListener {
     
     private final String deathMessage = ChatColor.GRAY + "%s" + ChatColor.GRAY + " killed " + ChatColor.GREEN + "%s" + ChatColor.GRAY + "!";
     
-    public Kill(OtisArena main) {
+    /** GameDeath handles deaths and kills during games.
+     * 
+     * @param main instance of JavaPlugin
+     */
+    public GameDeath(OtisArena main) {
         super(main);
     }
     
