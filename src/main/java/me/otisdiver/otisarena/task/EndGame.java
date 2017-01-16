@@ -18,10 +18,12 @@ public class EndGame extends Task {
     private final String tieMessage = ChatColor.GRAY + "The game ended in a " + ChatColor.WHITE + "tie!";
     
     private Game game;
+    private boolean newGame;
     
-    public EndGame(OtisArena main) {
+    public EndGame(OtisArena main, boolean newGame) {
         super(main);
         this.game = main.getGame();
+        this.newGame = newGame;
     }
 
     @Override
@@ -42,6 +44,9 @@ public class EndGame extends Task {
         
         // unload arena, don't save changes
         Bukkit.unloadWorld(game.getActiveWorld(), false);
+        
+        // create new game
+        if (!newGame) return;
         
         // find and announce winner (after a brief delay for thinking)
         Team winner = game.getWinningTeam();

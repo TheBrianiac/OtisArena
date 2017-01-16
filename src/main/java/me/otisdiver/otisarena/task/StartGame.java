@@ -69,7 +69,7 @@ public class StartGame extends Task {
         new FutureBroadcast(main, warningMessage).runFuture(gameLengthTicks - (warningSeconds * 20));
         
         // end game after gameLengthTicks
-        new EndGame(main).runFuture(gameLengthTicks);
+        new EndGame(main, true).runFuture(gameLengthTicks);
         
         // go to next state - STARTING
         GameState.advance();
