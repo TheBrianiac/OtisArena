@@ -94,9 +94,15 @@ public class Game {
     
     /** Cleanly stops the game and any associated tasks. */
     public void stop() {
-        interval5.override();
-        interval1.override();
-        startGame.cancel();
+        switch(GameState.getCurrent()) {
+            case RECRUITING:
+                interval5.override();
+                interval1.override();
+                startGame.cancel();
+                break;
+            default:
+                return;
+        }
     }
     
     /** Get a team object with a given team chatcolor.
