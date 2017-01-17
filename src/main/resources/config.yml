@@ -1,0 +1,25 @@
+# Default plugin configuration!
+worlds:
+    # World name on this line
+    DMArena:
+        spawns:
+            # Name the location what you'd like, it doesn't matter
+            a:
+                # X Coordinate
+                x: 669.50
+                # Y Coordinate
+                y: 8
+                # Z Coordinate
+                z: -263.50
+            b:
+                x: 619.50
+                y: 8
+                z: -213.50
+            c:
+                x: 569.50
+                y: 8
+                z: -263.50
+            d:
+                x: 619.50
+                y: 8
+                z: -313.50
