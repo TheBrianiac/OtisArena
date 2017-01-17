@@ -1,5 +1,8 @@
 package me.otisdiver.otisarena.task;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -11,6 +14,7 @@ import me.otisdiver.otisarena.ConfigUtils;
 import me.otisdiver.otisarena.OtisArena;
 import me.otisdiver.otisarena.game.Game;
 import me.otisdiver.otisarena.game.GameState;
+import me.otisdiver.otisarena.game.Team;
 
 public class StartGame extends Task {
     
@@ -49,11 +53,24 @@ public class StartGame extends Task {
         game.setActiveWorld(arena);
         
         // send players into game world
+        HashMap<Location, Team> usedLocations = new HashMap<Location, Team>();
+        
         for (Player player : game.getActivePlayers()) {
             
-            Location spawn = ConfigUtils.getRandomSpawn(arena);
-            player.teleport(spawn);
+            Team playerTeam = game.getPlayerTeam(player);
             
+            boolean spawned = false;
+            while (!spawned) {
+                Location spawn = ConfigUtils.getRandomSpawn(arena);
+                Team spawnTeam = usedLocations.get(spawn);
+                
+                // if the spawn belongs to that player's team or no team, teleport to it
+                if (spawnTeam == null || spawnTeam.equals(playerTeam)) {
+                    player.teleport(spawn);
+                    usedLocations.put(spawn, game.getPlayerTeam(player));
+                    spawned = true;
+                }
+            }
         }
         
         // unload the lobby, don't save changes
