@@ -40,6 +40,8 @@ public class EndGame extends Task {
             
             player.teleport(lobby.getSpawnLocation());
             player.setGameMode(GameMode.SURVIVAL);
+            player.setHealth(20.0);
+            player.setFoodLevel(20);
         }
         
         // unload arena, don't save changes
