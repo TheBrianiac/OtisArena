@@ -8,18 +8,18 @@ worlds:
                 # X Coordinate
                 x: 669.50
                 # Y Coordinate
-                y: 8.50
+                y: 8
                 # Z Coordinate
                 z: -263.50
             b:
                 x: 619.50
-                y: 8.50
+                y: 8
                 z: -213.50
             c:
                 x: 569.50
-                y: 8.50
+                y: 8
                 z: -263.50
             d:
                 x: 619.50
-                y: 8.50
+                y: 8
                 z: -313.50
