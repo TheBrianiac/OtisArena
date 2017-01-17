@@ -78,8 +78,6 @@ public class ConfigUtils {
         Double x = locations.getDouble(spawn + ".x");
         Double y = locations.getDouble(spawn + ".y");
         Double z = locations.getDouble(spawn + ".z");
-        
-        Bukkit.getLogger().info(world.getName() + x + y + z);
         return new Location(world, x, y, z);
     }
     
