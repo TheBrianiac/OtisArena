@@ -1,5 +1,7 @@
 package me.otisdiver.otisarena;
 
+import java.util.Random;
+
 import org.bukkit.plugin.java.JavaPlugin;
 
 import me.otisdiver.otisarena.event.GameDeath;
@@ -13,6 +15,7 @@ import me.otisdiver.otisarena.task.EndGame;
 public class OtisArena extends JavaPlugin {
     
     private Game game;
+    private Random randomSet;
     
     public void onEnable() {
         
@@ -28,6 +31,9 @@ public class OtisArena extends JavaPlugin {
         new GameDeath(this);
         new LobbyGuard(this);
         new WorldGuard(this);
+        
+        // create a set of random numbers
+        randomSet = new Random();
     }
     
     public void onDisable() {
@@ -38,6 +44,11 @@ public class OtisArena extends JavaPlugin {
     
     public Game getGame() {
         return game;
+    }
+    
+    public int getRandomNumber(int max) {
+        return randomSet.nextInt(max);
+        // TODO use this method across all classes
     }
     
 }

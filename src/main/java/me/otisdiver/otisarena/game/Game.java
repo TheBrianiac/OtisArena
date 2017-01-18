@@ -3,6 +3,7 @@ package me.otisdiver.otisarena.game;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import org.bukkit.ChatColor;
@@ -23,6 +24,9 @@ public class Game {
     // message sent to players when they join a team
     private final String teamJoinMessage = ChatColor.YELLOW + "You're on the %s%s Team" + ChatColor.YELLOW + "!";
     
+    // message sent to players when they get a kit
+    private final String kitChosenMessage = ChatColor.YELLOW + "Chose kit: %s" + ChatColor.YELLOW + "!";
+    
     // game starts 20 seconds after this # of players is met
     private final int minimumPlayers = 2;
     
@@ -37,6 +41,9 @@ public class Game {
     
     // a list of all people playing (people conditionally added by events.Join)
     private ArrayList<Player> activePlayers = new ArrayList<Player>();
+    
+    // track player kits
+    private HashMap<Player, Kit> kitChoices = new HashMap<Player, Kit>();
     
     // countdown tasks (before game is started)
     private Countdown interval5;
@@ -251,6 +258,32 @@ public class Game {
     
     public void setActiveWorld(World activeWorld) {
         this.activeWorld = activeWorld;
+    }
+    
+    /** Remembers a player's kit choice.
+     * 
+     * @param player what player to give the kit to
+     * @param kit what Kit to give the player
+     */
+    public void setKit(Player player, Kit kit) {
+        if (player == null || kit == null) return;
+        kitChoices.put(player, kit);
+        player.sendMessage(String.format(kitChosenMessage, kit.getDisplayName()));
+    }
+    
+    /** Retrieves a player's kit choice. Assigns a random kit if none was chosen.
+     * 
+     * @param player player whose kit is desired
+     * @return the player's chosen kit, or random if none
+     */
+    public Kit getKit(Player player) {
+        Kit value = kitChoices.get(player);
+        if (value == null) {
+            Kit[] kits = Kit.values();
+            value = kits[main.getRandomNumber(kits.length)];
+            setKit(player, value);
+        }
+        return value;
     }
     
 }
