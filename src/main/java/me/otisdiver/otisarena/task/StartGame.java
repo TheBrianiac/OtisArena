@@ -1,6 +1,5 @@
 package me.otisdiver.otisarena.task;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.bukkit.Bukkit;
