@@ -14,6 +14,7 @@ import me.otisdiver.otisarena.ConfigUtils;
 import me.otisdiver.otisarena.OtisArena;
 import me.otisdiver.otisarena.game.Game;
 import me.otisdiver.otisarena.game.GameState;
+import me.otisdiver.otisarena.game.InventoryBuilder;
 
 public class JoinQuit extends EasyListener {
     
@@ -63,14 +64,17 @@ public class JoinQuit extends EasyListener {
         Player player = e.getPlayer();
         game.getActivePlayers().add(player);
         
-        // find the current game status
-        GameState state = GameState.getCurrent();
+        // create inventory
+        new InventoryBuilder(main, player);
         
         // determine join message
         String joinMessage = "";
         if (joinMessageDefault != null) {
             String.format(joinMessageDefault, player.getName());
         }
+        
+        // find the current game status
+        GameState state = GameState.getCurrent();
         
         switch(state) {
             case RECRUITING:

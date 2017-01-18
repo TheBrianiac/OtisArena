@@ -13,6 +13,7 @@ import me.otisdiver.otisarena.ConfigUtils;
 import me.otisdiver.otisarena.OtisArena;
 import me.otisdiver.otisarena.game.Game;
 import me.otisdiver.otisarena.game.GameState;
+import me.otisdiver.otisarena.game.InventoryBuilder;
 import me.otisdiver.otisarena.game.Team;
 
 public class StartGame extends Task {
@@ -70,6 +71,9 @@ public class StartGame extends Task {
                     spawned = true;
                 }
             }
+            
+            // create their inventory
+            new InventoryBuilder(main, player);
         }
         
         // unload the lobby, don't save changes
