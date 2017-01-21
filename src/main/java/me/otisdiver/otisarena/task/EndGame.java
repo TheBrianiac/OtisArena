@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import me.otisdiver.otisarena.OtisArena;
 import me.otisdiver.otisarena.game.Game;
 import me.otisdiver.otisarena.game.GameState;
+import me.otisdiver.otisarena.game.InventoryBuilder;
 import me.otisdiver.otisarena.game.Team;
 
 public class EndGame extends Task {
@@ -42,6 +43,7 @@ public class EndGame extends Task {
             player.setGameMode(GameMode.SURVIVAL);
             player.setHealth(20.0);
             player.setFoodLevel(20);
+            new InventoryBuilder(main, player);
         }
         
         // unload arena, don't save changes

@@ -24,20 +24,32 @@ public class InventoryBuilder {
         
         switch(GameState.getCurrent()) {
             case RECRUITING:
-                Kit[] kits = Kit.values();
-                int[] indexes = getHotbarIndexes(kits.length);
-                for(int i = 0; i < kits.length; i++) {
-                    player.getInventory().setItem(indexes[i], kits[i].getNewButton());
-                }
+                buildKitMenu(player);
                 break;
+            case UNLOADING:
+                buildKitMenu(player);
             case LOADING:
-                player.getInventory().setContents(getLoadout());
-                player.getInventory().setArmorContents(getArmor(player));
+                buildGameInv(player);
                 break;
             default:
                 break;
         }
         
+    }
+    
+    /** Put kit selection buttons into the player's hotbar. */
+    private void buildKitMenu(Player player) {
+        Kit[] kits = Kit.values();
+        int[] indexes = getHotbarIndexes(kits.length);
+        for(int i = 0; i < kits.length; i++) {
+            player.getInventory().setItem(indexes[i], kits[i].getNewButton());
+        }
+    }
+    
+    /** Give the player the game loadout. */
+    private void buildGameInv(Player player) {
+        player.getInventory().setContents(getLoadout());
+        player.getInventory().setArmorContents(getArmor(player));
     }
     
     /** Standard set of items to give players in the game. */
