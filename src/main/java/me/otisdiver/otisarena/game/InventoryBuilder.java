@@ -20,6 +20,7 @@ public class InventoryBuilder {
      */
     public InventoryBuilder(OtisArena main, Player player) {
         this.main = main;
+        player.getInventory().clear();
         
         switch(GameState.getCurrent()) {
             case RECRUITING:
@@ -30,7 +31,6 @@ public class InventoryBuilder {
                 }
                 break;
             case LOADING:
-                player.getInventory().clear();
                 player.getInventory().setContents(getLoadout());
                 player.getInventory().setArmorContents(getArmor(player));
                 break;
