@@ -60,10 +60,10 @@ public class InventoryBuilder {
         
         // put the shirt with a set of chain armor, return
         return new ItemStack[] {
-            new ItemStack(Material.CHAINMAIL_HELMET),
-            shirt,
+            new ItemStack(Material.CHAINMAIL_BOOTS),
             new ItemStack(Material.CHAINMAIL_LEGGINGS),
-            new ItemStack(Material.CHAINMAIL_BOOTS)
+            shirt,
+            new ItemStack(Material.CHAINMAIL_HELMET),
         };
     }
     
@@ -133,23 +133,23 @@ public class InventoryBuilder {
     private int[] getHotbarIndexes(int items) {
         switch(items) {
             case 9:
-                return new int[] {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+                return new int[] {0, 1, 2, 3, 4, 5, 6, 7, 8};
             case 8:
-                return new int[] {1, 2, 3, 4, 6, 7, 8, 9};
+                return new int[] {0, 1, 2, 3, 5, 6, 7, 8};
             case 7:
-                return new int[] {2, 3, 4, 5, 6, 7, 8};
+                return new int[] {1, 2, 3, 4, 5, 6, 7};
             case 6:
-                return new int[] {2, 3, 4, 6, 7, 8};
+                return new int[] {1, 2, 3, 5, 6, 7};
             case 5:
-                return new int[] {1, 3, 5, 7, 9};
+                return new int[] {0, 2, 4, 6, 8};
             case 4:
-                return new int[] {2, 4, 6, 8};
+                return new int[] {1, 3, 5, 7};
             case 3:
-                return new int[] {3, 5, 7};
+                return new int[] {2, 4, 6};
             case 2:
-                return new int[] {3, 7};
+                return new int[] {2, 6};
             case 1:
-                return new int[] {5};
+                return new int[] {4};
             default:
                 return null;
         }
