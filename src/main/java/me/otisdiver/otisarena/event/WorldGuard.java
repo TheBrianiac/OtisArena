@@ -4,8 +4,10 @@ import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockExplodeEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.InventoryOpenEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
 
 import me.otisdiver.otisarena.OtisArena;
 
@@ -27,7 +29,12 @@ public class WorldGuard extends EasyListener {
     }
     
     @EventHandler
-    public void onInteract(PlayerInteractEvent e) {
+    public void onBlockBreak(BlockBreakEvent e) {
+        event(e.getPlayer(), e);
+    }
+    
+    @EventHandler
+    public void onBlockPlace(BlockPlaceEvent e) {
         event(e.getPlayer(), e);
     }
     
