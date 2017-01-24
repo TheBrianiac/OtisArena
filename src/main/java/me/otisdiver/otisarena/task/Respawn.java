@@ -6,6 +6,7 @@ import org.bukkit.entity.Player;
 import me.otisdiver.otisarena.ConfigUtils;
 import me.otisdiver.otisarena.OtisArena;
 import me.otisdiver.otisarena.game.Game;
+import me.otisdiver.otisarena.game.InventoryBuilder;
 
 public class Respawn extends Task {
     
@@ -25,6 +26,7 @@ public class Respawn extends Task {
         player.teleport(ConfigUtils.getRandomSpawn(game.getActiveWorld()));
         player.setHealth(20.0);
         player.setFoodLevel(20);
+        new InventoryBuilder(main, player);
         
     }
     
