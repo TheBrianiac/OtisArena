@@ -67,7 +67,8 @@ public class InventoryBuilder {
         // create a colored shirt
         ItemStack shirt = new ItemStack(Material.LEATHER_CHESTPLATE);
         LeatherArmorMeta meta = (LeatherArmorMeta) shirt.getItemMeta();
-        meta.setColor(getArmorColor(meta.getColor(), player));
+        Color armorColor = ColorUtils.fromChatColor(main.getGame().getPlayerTeam(player).getColor(), Color.WHITE);
+        meta.setColor(getArmorColor(armorColor, player));
         shirt.setItemMeta(meta);
         
         // put the shirt with a set of chain armor, return
@@ -84,60 +85,6 @@ public class InventoryBuilder {
         int[] rgb;
         ChatColor chat = main.getGame().getPlayerTeam(player).getColor();
         
-        switch(chat) {
-            case AQUA:
-                rgb = new int[] {0, 230, 240};
-                break;
-            case BLUE:
-                rgb = new int[] {0, 200, 225};
-                break;
-            case DARK_AQUA:
-                rgb = new int[] {0, 200, 180};
-                break;
-            case DARK_BLUE:
-                rgb = new int[] {0, 0, 225};
-                break;
-            case DARK_GRAY:
-                rgb = new int[] {80, 80, 80};
-                break;
-            case DARK_GREEN:
-                rgb = new int[] {0, 150, 0};
-                break;
-            case DARK_PURPLE:
-                rgb = new int[] {90, 0, 150};
-                break;
-            case DARK_RED:
-                rgb = new int[] {200, 50, 50};
-                break;
-            case GOLD:
-                rgb = new int[] {255, 255, 0};
-                break;
-            case GRAY:
-                rgb = new int[] {180, 180, 180};
-                break;
-            case GREEN:
-                rgb = new int[] {0, 255, 0};
-                break;
-            case LIGHT_PURPLE:
-                rgb = new int[] {255, 100, 255};
-                break;
-            case RED:
-                rgb = new int[] {255, 0, 0};
-                break;
-            case WHITE:
-                rgb = new int[] {255, 255, 255};
-                break;
-            case YELLOW:
-                rgb = new int[] {225, 220, 50};
-                break;
-            default:
-                rgb = new int[] {0, 0, 0};
-                break;
-        }
-        
-        color.setRed(rgb[0]);
-        color.setGreen(rgb[1]);
-        color.setBlue(rgb[2]);
         return color;
     }
     
