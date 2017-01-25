@@ -7,21 +7,14 @@ public class LocationUtils {
 
     /** Calculates the pythagorean distance between two points.
      * 
-     * @param al the first location value
-     * @param bl the second location value
+     * @param locA the first location value
+     * @param locB the second location value
      * @return the distance between the two locations
      */
-    public static double calculateDistance(Location al, Location bl) {
-        double ax = al.getX();
-        double ay = al.getY();
-        double az = al.getZ();
-        double bx = bl.getX();
-        double by = bl.getY();
-        double bz = bl.getZ();
-        
-        double dx = ax - bx;
-        double dy = ay - by;
-        double dz = az - bz;
+    public static double calculateDistance(Location locA, Location locB) {
+        double dx = locA.getX() - locB.getX();
+        double dy = locA.getY() - locB.getY();
+        double dz = locA.getZ() - locB.getZ();
         
         return Math.sqrt(dx * dx + dy * dy + dz * dz);
     }
