@@ -1,4 +1,4 @@
-package me.otisdiver.otisarena.game;
+package me.otisdiver.otisarena.utils;
 
 import java.util.HashMap;
 

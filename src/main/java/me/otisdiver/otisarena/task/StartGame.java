@@ -9,12 +9,12 @@ import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.entity.Player;
 
-import me.otisdiver.otisarena.ConfigUtils;
 import me.otisdiver.otisarena.OtisArena;
 import me.otisdiver.otisarena.game.Game;
 import me.otisdiver.otisarena.game.GameState;
 import me.otisdiver.otisarena.game.InventoryBuilder;
 import me.otisdiver.otisarena.game.Team;
+import me.otisdiver.otisarena.utils.ConfigUtils;
 
 public class StartGame extends Task {
     

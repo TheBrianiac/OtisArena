@@ -10,11 +10,11 @@ import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import me.otisdiver.otisarena.ConfigUtils;
 import me.otisdiver.otisarena.OtisArena;
 import me.otisdiver.otisarena.game.Game;
 import me.otisdiver.otisarena.game.GameState;
 import me.otisdiver.otisarena.game.InventoryBuilder;
+import me.otisdiver.otisarena.utils.ConfigUtils;
 
 public class JoinQuit extends EasyListener {
     

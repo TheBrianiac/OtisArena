@@ -1,4 +1,4 @@
-package me.otisdiver.otisarena;
+package me.otisdiver.otisarena.utils;
 
 import java.util.Random;
 import java.util.Set;
@@ -8,6 +8,8 @@ import org.bukkit.World;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 
+import me.otisdiver.otisarena.OtisArena;
+
 public class ConfigUtils {
     
     private static OtisArena main;
@@ -16,7 +18,7 @@ public class ConfigUtils {
     
     private static boolean initiated = false;
     
-    static void initiate(OtisArena mainClass) {
+    public static void initiate(OtisArena mainClass) {
         
         if (initiated) return;
         

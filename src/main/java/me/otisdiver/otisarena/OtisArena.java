@@ -11,6 +11,7 @@ import me.otisdiver.otisarena.event.StartingCanceller;
 import me.otisdiver.otisarena.event.WorldGuard;
 import me.otisdiver.otisarena.game.Game;
 import me.otisdiver.otisarena.task.EndGame;
+import me.otisdiver.otisarena.utils.ConfigUtils;
 
 public class OtisArena extends JavaPlugin {
     

@@ -8,6 +8,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
 import me.otisdiver.otisarena.OtisArena;
+import me.otisdiver.otisarena.utils.ColorUtils;
 
 public class InventoryBuilder {
     
