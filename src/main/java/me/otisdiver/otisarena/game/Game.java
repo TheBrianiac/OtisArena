@@ -73,7 +73,7 @@ public class Game {
     /** Gets the list of players participating in minigames.
      * 
      * @return list of active (participating) players */
-    public List<Player> getActivePlayers() {
+    public ArrayList<Player> getActivePlayers() {
         return activePlayers;
     }
     
