@@ -7,7 +7,7 @@ import me.otisdiver.otisarena.OtisArena;
 
 public class Firespit extends Ability {
     
-    private final long waitMillis = 3000;
+    private static final long waitMillis = 3000;
     
     public Firespit(OtisArena main, Player player) {
         super(main, player);

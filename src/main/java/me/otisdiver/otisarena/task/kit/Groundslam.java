@@ -7,7 +7,7 @@ import me.otisdiver.otisarena.utils.LocationUtils;
 
 public class Groundslam extends Ability {
     
-    private final long waitMillis = 7000;
+    private static final long waitMillis = 7000;
     
     /** Activates a Groundslam ability for the given player.
      * 
