@@ -1,6 +1,5 @@
 package me.otisdiver.otisarena.utils;
 
-import java.util.Random;
 import java.util.Set;
 
 import org.bukkit.Location;
@@ -14,8 +13,6 @@ public class ConfigUtils {
     
     private static OtisArena main;
     
-    private static Random randomSet;
-    
     private static boolean initiated = false;
     
     public static void initiate(OtisArena mainClass) {
@@ -27,9 +24,6 @@ public class ConfigUtils {
         
         // create a config if needed
         main.saveDefaultConfig();
-        
-        // make a random
-        randomSet = new Random();
         
         // flag class as initiated
         initiated = true;
@@ -46,7 +40,7 @@ public class ConfigUtils {
     private static String randomKey(Set<String> set) {
         
         // choose a random index, then find it from the set
-        int random = randomSet.nextInt(set.size());
+        int random = RandUtils.rand(set.size());
         int i = 0;
         for(String item : set) {
             if (i == random) return item;

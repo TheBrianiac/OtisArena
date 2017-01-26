@@ -11,7 +11,7 @@ public class RandUtils {
      * @param max the maximum (exclusive) value of the number
      * @return a pseudo randomly generated number above 0
      */
-    public static int getRandomNumber(int max) {
+    public static int rand(int max) {
         return randomSet.nextInt(max);
         // TODO use this method across all classes
     }

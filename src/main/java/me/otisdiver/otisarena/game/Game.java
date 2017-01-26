@@ -281,7 +281,7 @@ public class Game {
         Kit value = kitChoices.get(player);
         if (value == null) {
             Kit[] kits = Kit.values();
-            value = kits[RandUtils.getRandomNumber(kits.length)];
+            value = kits[RandUtils.rand(kits.length)];
             setKit(player, value);
         }
         return value;
