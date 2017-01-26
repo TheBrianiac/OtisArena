@@ -47,9 +47,4 @@ public class OtisArena extends JavaPlugin {
         return game;
     }
     
-    public int getRandomNumber(int max) {
-        return randomSet.nextInt(max);
-        // TODO use this method across all classes
-    }
-    
 }

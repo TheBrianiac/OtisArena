@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 import me.otisdiver.otisarena.OtisArena;
 import me.otisdiver.otisarena.task.Countdown;
 import me.otisdiver.otisarena.task.StartGame;
+import me.otisdiver.otisarena.utils.RandUtils;
 
 public class Game {
     
@@ -280,7 +281,7 @@ public class Game {
         Kit value = kitChoices.get(player);
         if (value == null) {
             Kit[] kits = Kit.values();
-            value = kits[main.getRandomNumber(kits.length)];
+            value = kits[RandUtils.getRandomNumber(kits.length)];
             setKit(player, value);
         }
         return value;
