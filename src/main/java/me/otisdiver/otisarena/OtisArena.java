@@ -18,8 +18,6 @@ import me.otisdiver.otisarena.utils.ConfigUtils;
 public class OtisArena extends JavaPlugin {
     
     private Game game;
-    private Random randomSet;
-    
     public void onEnable() {
         
         // instantiate the game class
@@ -37,8 +35,7 @@ public class OtisArena extends JavaPlugin {
         new WorldGuard(this);
         new ClickHandler(this);
         
-        // create a set of random numbers
-        randomSet = new Random();
+        new Random();
     }
     
     public void onDisable() {
