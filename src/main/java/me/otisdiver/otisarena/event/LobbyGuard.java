@@ -1,5 +1,6 @@
 package me.otisdiver.otisarena.event;
 
+import org.bukkit.GameMode;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.EventHandler;
@@ -43,7 +44,8 @@ public class LobbyGuard extends EasyListener {
     
     @EventHandler(priority = EventPriority.LOW)
     public void onInvEdit(InventoryClickEvent e) {
-        if (inLobby(e.getWhoClicked())) cancel(e);
+        if (!inLobby(e.getWhoClicked())) return;
+        if (!e.getWhoClicked().getGameMode().equals(GameMode.CREATIVE)) cancel(e);
     }
     
     // Super lazy shortcut methods
