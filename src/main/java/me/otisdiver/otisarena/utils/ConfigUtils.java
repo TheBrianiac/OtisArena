@@ -15,14 +15,15 @@ public class ConfigUtils {
     
     private static boolean initiated = false;
     
-    public static void initiate(OtisArena mainClass) {
-        
+    /** Artificial constructor.
+     * 
+     * @param argMain instance of JavaPlugin
+     */
+    public static void initiate(OtisArena argMain) {
         if (initiated) return;
         
-        // save the main class
-        main = mainClass;
-        
-        // create a config if needed
+        main = argMain;
+        // create a config if one doesn't exist
         main.saveDefaultConfig();
         
         // flag class as initiated
