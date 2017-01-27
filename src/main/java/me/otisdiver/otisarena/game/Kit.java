@@ -7,22 +7,37 @@ import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import me.otisdiver.otisarena.task.kit.Ability;
+import me.otisdiver.otisarena.task.kit.Firespit;
+import me.otisdiver.otisarena.task.kit.Groundslam;
+import me.otisdiver.otisarena.task.kit.Rollup;
+
 public enum Kit {
     
-    GORILLA(ChatColor.DARK_GREEN + "Gorilla", "Groundslam", "Send everyone near you flying away (7 second cooldown)."),
+    GORILLA(Groundslam.class, ChatColor.DARK_GREEN + "Gorilla", "Groundslam", "Send everyone near you flying away (7 second cooldown)."),
     
-    ARMADILLO(ChatColor.DARK_GRAY + "Armadillo", "Rollup", "Block incoming and outgoing damage for 3 seconds."),
+    ARMADILLO(Rollup.class, ChatColor.DARK_GRAY + "Armadillo", "Rollup", "Block incoming and outgoing damage for 3 seconds."),
     
-    SALAMANDER(ChatColor.RED + "Salmander", "Firespit", "Shoot an explosive fireball (3 second cooldown).");
+    SALAMANDER(Firespit.class, ChatColor.RED + "Salmander", "Firespit", "Shoot an explosive fireball (3 second cooldown).");
     
-    String displayName;
-    String abilityName;
-    String abilityDesc;
+    public static final Material buttonDefault = Material.IRON_HELMET;
+    public static final Material buttonChosen = Material.GOLD_HELMET;
+    public static final Material abilityTool = Material.STONE_SWORD;
     
-    Kit (String displayName, String abilityName, String abilityDesc) {
+    private Class<? extends Ability> ability;
+    private String displayName;
+    private String abilityName;
+    private String abilityDesc;
+    
+    Kit (Class<? extends Ability> ability, String displayName, String abilityName, String abilityDesc) {
+        this.ability = ability;
         this.displayName = displayName;
         this.abilityName = abilityName;
         this.abilityDesc = abilityDesc;
+    }
+    
+    public Class<? extends Ability> getAbility() {
+        return ability;
     }
     
     public String getDisplayName() {

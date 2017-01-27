@@ -5,21 +5,38 @@ import java.util.HashMap;
 import org.bukkit.entity.Player;
 
 import me.otisdiver.otisarena.OtisArena;
-import me.otisdiver.otisarena.game.Game;
-import me.otisdiver.otisarena.task.Task;
 
-public abstract class Ability extends Task {
+public abstract class Ability {
 
-    protected Game game;
+    protected static OtisArena main;
+    private static boolean initiated = false;
+    private static HashMap<Class<? extends Ability>, Long> lastUses = new HashMap<>();
+    
     protected Player player;
     
-    public Ability(OtisArena main, Player player) {
-        super(main);
-        game = main.getGame();
-        this.player = player;
+    /** Artificial constructor.
+     * 
+     * @param argMain instance of JavaPlugin
+     */
+    public static void initiate(OtisArena argMain) {
+        if (initiated) return;
+        
+        main = argMain;
+        
+        // flag class as initialized
+        initiated = true;
     }
     
-    private static HashMap<Class<? extends Ability>, Long> lastUses = new HashMap<>();
+    /** Runs the ability for the given player.
+     * 
+     * @param player who used the ability
+     */
+    public void playerUse(Player player) {
+        this.player = player;
+        run();
+    }
+    
+    protected abstract void run();
     
     /** Checks if a player too recently used the ability and updates the cooldown records.
      * 

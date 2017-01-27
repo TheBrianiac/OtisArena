@@ -2,18 +2,11 @@ package me.otisdiver.otisarena.task.kit;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
-
-import me.otisdiver.otisarena.OtisArena;
 
 public class Rollup extends Ability {
     
     private static final int waitMillis = 10000;
     private static final String statusMessage = "" + ChatColor.GRAY + ChatColor.BOLD + "Shield activated!";
-
-    public Rollup(OtisArena main, Player player) {
-        super(main, player);
-    }
 
     @Override
     public void run() {
