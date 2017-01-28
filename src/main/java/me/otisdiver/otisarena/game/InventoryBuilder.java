@@ -69,7 +69,7 @@ public class InventoryBuilder {
         ItemStack shirt = new ItemStack(Material.LEATHER_CHESTPLATE);
         LeatherArmorMeta meta = (LeatherArmorMeta) shirt.getItemMeta();
         Color armorColor = ColorUtils.fromChatColor(main.getGame().getPlayerTeam(player).getColor(), Color.WHITE);
-        meta.setColor(getArmorColor(armorColor, player));
+        meta.setColor(armorColor);
         shirt.setItemMeta(meta);
         
         // put the shirt with a set of chain armor, return
@@ -79,14 +79,6 @@ public class InventoryBuilder {
             shirt,
             new ItemStack(Material.CHAINMAIL_HELMET),
         };
-    }
-    
-    /** Get an armor color based on the given player's team color. */
-    private Color getArmorColor(Color color, Player player) {
-        int[] rgb;
-        ChatColor chat = main.getGame().getPlayerTeam(player).getColor();
-        
-        return color;
     }
     
     /** Positions in the inventory to place kit selection buttons. */
