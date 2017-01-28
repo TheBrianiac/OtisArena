@@ -27,7 +27,7 @@ public class ClickHandler extends EasyListener {
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onClick(PlayerInteractEvent e) {
         Player player = e.getPlayer();
-        ItemStack item = e.getItem();
+        ItemStack item = player.getInventory().getItemInMainHand();
         
         // check if the item is a kit button, assign kit if it is
         if (item.getType().equals(Kit.buttonDefault) && item.getItemMeta().hasDisplayName()) {
@@ -37,12 +37,13 @@ public class ClickHandler extends EasyListener {
             for(int i = 0; i < kits.length; i++) {
                 
                 // if the item name is the same as the kit's button
-                if (name.equals(kits[i].getAbilityName())) {
+                if (name.equals(kits[i].getDisplayName())) {
                     game.setKit(player, kits[i]);
                     item.setType(Kit.buttonChosen);
                     e.setCancelled(true);
                 }
             }
+            return;
         }
         
         // check if the item is a kit tool and game is running, activate ability if so
@@ -53,7 +54,9 @@ public class ClickHandler extends EasyListener {
                 e1.printStackTrace();
                 player.sendMessage(errorChat);
             }
+            return;
         }
     }
     
 }
+ 
