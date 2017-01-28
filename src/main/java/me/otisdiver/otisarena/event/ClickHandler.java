@@ -42,7 +42,8 @@ public class ClickHandler extends EasyListener {
                 // if the item name is the same as the kit's button
                 if (name.equals(kits[i].getDisplayName())) {
                     game.setKit(player, kits[i]);
-                    activeButtons.get(player).setType(Kit.buttonDefault);
+                    ItemStack oldButton = activeButtons.get(player);
+                    if (oldButton != null) oldButton.setType(Kit.buttonDefault);
                     item.setType(Kit.buttonChosen);
                     activeButtons.put(player, item);
                     e.setCancelled(true);
