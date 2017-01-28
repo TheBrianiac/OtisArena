@@ -1,5 +1,7 @@
 package me.otisdiver.otisarena.event;
 
+import java.util.HashMap;
+
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,6 +17,7 @@ import me.otisdiver.otisarena.game.Kit;
 public class ClickHandler extends EasyListener {
     
     private static final String errorChat = ChatColor.DARK_RED + "Internal error! Check console or contact a developer.";
+    private static HashMap<Player, ItemStack> activeButtons = new HashMap<>();
     
     private Game game;
     
@@ -39,7 +42,9 @@ public class ClickHandler extends EasyListener {
                 // if the item name is the same as the kit's button
                 if (name.equals(kits[i].getDisplayName())) {
                     game.setKit(player, kits[i]);
+                    activeButtons.get(player).setType(Kit.buttonDefault);
                     item.setType(Kit.buttonChosen);
+                    activeButtons.put(player, item);
                     e.setCancelled(true);
                 }
             }
