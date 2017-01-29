@@ -1,7 +1,5 @@
 package me.otisdiver.otisarena;
 
-import java.util.Random;
-
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -37,8 +35,6 @@ public class OtisArena extends JavaPlugin {
         new LobbyGuard(this);
         new WorldGuard(this);
         new ClickHandler(this);
-        
-        new Random();
     }
     
     public Game getGame() {
