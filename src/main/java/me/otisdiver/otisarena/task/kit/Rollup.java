@@ -5,12 +5,13 @@ import org.bukkit.ChatColor;
 
 public class Rollup extends Ability {
     
-    private static final int waitMillis = 10000;
+    private static final Long waitMillis = 10000L;
     private static final String statusMessage = "" + ChatColor.GRAY + ChatColor.BOLD + "Shield activated!";
 
     @Override
     public void run() {
-        if (!super.registerUse(this.getClass(), waitMillis)) return;
+        if (playerOnCooldown(player)) return;
+        startCooldown(player, waitMillis);
         
         // toggle invincibility once, and then again in 3 seconds (20 * 3 = 60 ticks)
         Bukkit.getScheduler().runTask(main, toggleInvincibility());

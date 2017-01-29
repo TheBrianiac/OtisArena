@@ -8,7 +8,8 @@ public class Firespit extends Ability {
 
     @Override
     protected void run() {
-        if (!super.registerUse(this.getClass(), waitMillis)) return;
+        if (playerOnCooldown(player)) return;
+        startCooldown(player, waitMillis);
         
         // shoot a fireball out of the player
         Fireball fireball = player.launchProjectile(Fireball.class);

@@ -2,6 +2,7 @@ package me.otisdiver.otisarena.task.kit;
 
 import java.util.HashMap;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import me.otisdiver.otisarena.OtisArena;
@@ -10,7 +11,7 @@ public abstract class Ability {
 
     protected static OtisArena main;
     private static boolean initiated = false;
-    private static HashMap<Class<? extends Ability>, Long> lastUses = new HashMap<>();
+    private static HashMap<Player, Long> cooldowns = new HashMap<>();
     
     protected Player player;
     
@@ -38,18 +39,14 @@ public abstract class Ability {
     
     protected abstract void run();
     
-    /** Checks if a player too recently used the ability and updates the cooldown records.
-     * 
-     * @param ability the type of ability
-     * @param waitMillis how long the player must wait since last use
-     * @return true if player is allowed to use the ability
-     */
-    protected static boolean registerUse(Class<? extends Ability> ability, long waitMillis) {
-        long currentTime = System.currentTimeMillis();
-        if (currentTime - lastUses.get(ability) < waitMillis) return false;
-        
-        lastUses.put(ability, currentTime);
-        return true;
+    protected boolean playerOnCooldown(Player player) {
+        Long cooldown = cooldowns.get(player);
+        if (cooldown == null) return false;
+        return (cooldown >= System.currentTimeMillis());
+    }
+    
+    protected void startCooldown(Player player, Long delayMillis) {
+        cooldowns.put(player, System.currentTimeMillis() + delayMillis);
     }
 
 }
