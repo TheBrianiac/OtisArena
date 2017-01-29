@@ -11,7 +11,6 @@ import me.otisdiver.otisarena.event.LobbyGuard;
 import me.otisdiver.otisarena.event.StartingCanceller;
 import me.otisdiver.otisarena.event.WorldGuard;
 import me.otisdiver.otisarena.game.Game;
-import me.otisdiver.otisarena.task.EndGame;
 import me.otisdiver.otisarena.task.kit.Ability;
 import me.otisdiver.otisarena.utils.ConfigUtils;
 
@@ -36,12 +35,6 @@ public class OtisArena extends JavaPlugin {
         new ClickHandler(this);
         
         new Random();
-    }
-    
-    public void onDisable() {
-        
-        // run end game routines
-        new EndGame(this, false).run();
     }
     
     public Game getGame() {

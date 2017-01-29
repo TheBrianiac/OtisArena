@@ -2,7 +2,6 @@ package me.otisdiver.otisarena.task.kit;
 
 import java.util.HashMap;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import me.otisdiver.otisarena.OtisArena;
