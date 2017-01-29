@@ -2,6 +2,7 @@ package me.otisdiver.otisarena;
 
 import java.util.Random;
 
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import me.otisdiver.otisarena.event.ClickHandler;
@@ -21,6 +22,9 @@ public class OtisArena extends JavaPlugin {
         
         // instantiate the game class
         game = new Game(this);
+        
+        // register commands
+        Bukkit.getPluginCommand("endgame").setExecutor(new Commander(this));
         
         // load various static classes
         ConfigUtils.initiate(this);
