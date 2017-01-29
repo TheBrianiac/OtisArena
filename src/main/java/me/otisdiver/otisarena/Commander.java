@@ -1,6 +1,7 @@
 package me.otisdiver.otisarena;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -9,6 +10,8 @@ import me.otisdiver.otisarena.task.EndGame;
 
 public class Commander implements CommandExecutor {
 
+    private static final String noAccessMessage = ChatColor.DARK_RED + "Access denied!";
+    
     private OtisArena main;
     
     /** Handles plugin commands.
@@ -22,7 +25,10 @@ public class Commander implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String cmd, String[] args) {
         if (cmd.equalsIgnoreCase("endgame")) {
-            if (!sender.hasPermission("gameadmin")) return false;
+            if (!sender.hasPermission("gameadmin")) {
+                sender.sendMessage(noAccessMessage);
+                return true;
+            }
             if (args.length != 1) return false;
             
             String arg = args[0].toLowerCase();
