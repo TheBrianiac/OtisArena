@@ -74,6 +74,9 @@ public class StartGame extends Task {
             
             // create their inventory
             new InventoryBuilder(main, player);
+            
+            // make sure they have a kit assigned
+            game.getKit(player);
         }
         
         // unload the lobby, don't save changes
