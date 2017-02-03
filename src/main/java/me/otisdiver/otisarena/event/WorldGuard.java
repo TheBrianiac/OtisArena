@@ -38,6 +38,7 @@ public class WorldGuard extends EasyListener {
         event(e.getPlayer(), e);
     }
     
+    @EventHandler
     public void onBlockExplode(BlockExplodeEvent e) {
         e.setCancelled(true);
     }
