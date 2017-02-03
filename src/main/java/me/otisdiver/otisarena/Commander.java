@@ -31,7 +31,7 @@ public class Commander implements CommandExecutor {
                 new EndGame(main, false);
                 Bukkit.getServer().shutdown();
             }
-            else if (args.equals("yes")) {
+            else if (arg.equals("yes")) {
                 new EndGame(main, true);
             }
             // not a valid option, stop
