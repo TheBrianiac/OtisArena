@@ -3,8 +3,8 @@ package me.otisdiver.otisarena.event;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
-import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -64,8 +64,8 @@ public class GameDeath extends EasyListener {
         if (e.getDamager() instanceof Player) {
             attacker = (Player) e.getDamager();
         }
-        else if (e.getDamager() instanceof Arrow) {
-            ProjectileSource shooter = ((Arrow) e.getDamager()).getShooter();
+        else if (e.getDamager() instanceof Projectile) {
+            ProjectileSource shooter = ((Projectile) e.getDamager()).getShooter();
             if (!(shooter instanceof Player)) return;
             attacker = (Player) shooter;
         }
