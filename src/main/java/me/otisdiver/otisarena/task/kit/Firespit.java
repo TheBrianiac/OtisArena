@@ -12,8 +12,7 @@ public class Firespit extends Ability {
         startCooldown(player, waitMillis);
         
         // shoot a fireball out of the player
-        Fireball fireball = player.launchProjectile(Fireball.class);
-        fireball.setVelocity(player.getLocation().getDirection().multiply(10));
+        player.launchProjectile(Fireball.class).setVelocity(player.getLocation().getDirection().multiply(0.5));
     }
     
 }
