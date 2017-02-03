@@ -1,11 +1,14 @@
 package me.otisdiver.otisarena.event;
 
+import org.bukkit.GameMode;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerDropItemEvent;
 
 import me.otisdiver.otisarena.OtisArena;
 
@@ -32,6 +35,17 @@ public class LobbyGuard extends EasyListener {
     @EventHandler(priority = EventPriority.LOW)
     public void onDamage(EntityDamageEvent e) {
         if (inLobby(e.getEntity())) cancel(e);
+    }
+    
+    @EventHandler(priority = EventPriority.LOW)
+    public void onDrop(PlayerDropItemEvent e) {
+        if (inLobby(e.getPlayer())) cancel(e);
+    }
+    
+    @EventHandler(priority = EventPriority.LOW)
+    public void onInvEdit(InventoryClickEvent e) {
+        if (!inLobby(e.getWhoClicked())) return;
+        if (!e.getWhoClicked().getGameMode().equals(GameMode.CREATIVE)) cancel(e);
     }
     
     // Super lazy shortcut methods

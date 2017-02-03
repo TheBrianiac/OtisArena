@@ -1,6 +1,5 @@
 package me.otisdiver.otisarena.task;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.bukkit.Bukkit;
@@ -10,11 +9,12 @@ import org.bukkit.World;
 import org.bukkit.WorldCreator;
 import org.bukkit.entity.Player;
 
-import me.otisdiver.otisarena.ConfigUtils;
 import me.otisdiver.otisarena.OtisArena;
 import me.otisdiver.otisarena.game.Game;
 import me.otisdiver.otisarena.game.GameState;
+import me.otisdiver.otisarena.game.InventoryBuilder;
 import me.otisdiver.otisarena.game.Team;
+import me.otisdiver.otisarena.utils.ConfigUtils;
 
 public class StartGame extends Task {
     
@@ -71,6 +71,12 @@ public class StartGame extends Task {
                     spawned = true;
                 }
             }
+            
+            // create their inventory
+            new InventoryBuilder(main, player);
+            
+            // make sure they have a kit assigned
+            game.getKit(player);
         }
         
         // unload the lobby, don't save changes

@@ -10,10 +10,11 @@ import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import me.otisdiver.otisarena.ConfigUtils;
 import me.otisdiver.otisarena.OtisArena;
 import me.otisdiver.otisarena.game.Game;
 import me.otisdiver.otisarena.game.GameState;
+import me.otisdiver.otisarena.game.InventoryBuilder;
+import me.otisdiver.otisarena.utils.ConfigUtils;
 
 public class JoinQuit extends EasyListener {
     
@@ -63,14 +64,17 @@ public class JoinQuit extends EasyListener {
         Player player = e.getPlayer();
         game.getActivePlayers().add(player);
         
-        // find the current game status
-        GameState state = GameState.getCurrent();
+        // create inventory
+        new InventoryBuilder(main, player);
         
         // determine join message
         String joinMessage = "";
         if (joinMessageDefault != null) {
             String.format(joinMessageDefault, player.getName());
         }
+        
+        // find the current game status
+        GameState state = GameState.getCurrent();
         
         switch(state) {
             case RECRUITING:
@@ -83,6 +87,9 @@ public class JoinQuit extends EasyListener {
                 if (game.getActivePlayers().size() == game.getMinimumPlayers()) {
                     game.start();
                 }
+                
+                // teleport player to spawn
+                player.teleport(player.getWorld().getSpawnLocation());
                 
                 break;
             case STARTING:
