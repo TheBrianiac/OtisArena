@@ -15,7 +15,7 @@ public class Groundslam extends Ability {
         
         // for all players within 5 blocks of the ability user (player)
         for (Player target : main.getGame().getActivePlayers()) {
-            if (LocationUtils.withinDistance(player, target, 5)) {
+            if (!player.equals(target) && LocationUtils.withinDistance(player, target, 5)) {
                 // apply knockback
                 target.setVelocity(target.getLocation().getDirection().multiply(-1));
             }
