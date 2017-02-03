@@ -31,6 +31,9 @@ public class InventoryBuilder {
             case LOADING:
                 buildGameInv(player);
                 break;
+            case PLAYING:
+                buildGameInv(player);
+                break;
             default:
                 break;
         }
