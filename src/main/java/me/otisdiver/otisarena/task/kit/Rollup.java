@@ -6,7 +6,8 @@ import org.bukkit.ChatColor;
 public class Rollup extends Ability {
     
     private static final Long waitMillis = 10000L;
-    private static final String statusMessage = "" + ChatColor.GRAY + ChatColor.BOLD + "Shield activated!";
+    private static final String enableMessage = "" + ChatColor.GOLD + ChatColor.BOLD + "Shield enabled!";
+    private static final String disableMessage = "" + ChatColor.GRAY + ChatColor.BOLD + "Shield disabled!";
 
     @Override
     public void run() {
@@ -22,8 +23,9 @@ public class Rollup extends Ability {
         return new Runnable() {
             @Override
             public void run() {
-                player.sendMessage(statusMessage);
-                player.setInvulnerable(!player.isInvulnerable());
+                boolean toggle = !player.isInvulnerable();
+                player.sendMessage(toggle ? enableMessage : disableMessage);
+                player.setInvulnerable(toggle);
             }
         };
     }
