@@ -30,6 +30,7 @@ public class InventoryBuilder {
                 break;
             case UNLOADING:
                 buildKitMenu(player);
+                break;
             case LOADING:
                 buildGameInv(player);
                 break;
