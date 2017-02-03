@@ -88,6 +88,9 @@ public class JoinQuit extends EasyListener {
                     game.start();
                 }
                 
+                // teleport player to spawn
+                player.teleport(player.getWorld().getSpawnLocation());
+                
                 break;
             case STARTING:
                 
