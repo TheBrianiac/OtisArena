@@ -28,11 +28,11 @@ public class Commander implements CommandExecutor {
             // start a new game or shut the server down based on args
             String arg = args[0].toLowerCase();
             if (arg.equals("no")) {
-                new EndGame(main, false);
+                new EndGame(main, false).runSync();
                 Bukkit.getServer().shutdown();
             }
             else if (arg.equals("yes")) {
-                new EndGame(main, true);
+                new EndGame(main, true).runSync();
             }
             // not a valid option, stop
             else {
