@@ -1,6 +1,7 @@
 package me.otisdiver.otisarena.game;
 
 import org.bukkit.Color;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -21,6 +22,7 @@ public class InventoryBuilder {
     public InventoryBuilder(OtisArena main, Player player) {
         this.main = main;
         player.getInventory().clear();
+        player.setGameMode(GameMode.SURVIVAL);
         
         switch(GameState.getCurrent()) {
             case RECRUITING:
