@@ -6,6 +6,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -55,6 +56,9 @@ public class ClickHandler extends EasyListener {
         
         // check if the item is a kit tool and game is running, activate ability if so
         if (item.getType().equals(Kit.abilityTool) && GameState.getCurrent().equals(GameState.PLAYING)) {
+            Action act = e.getAction();
+            if (!(act.equals(Action.RIGHT_CLICK_AIR) || act.equals(Action.RIGHT_CLICK_BLOCK))) return;
+            
             try {
                 game.getKit(player).getAbility().newInstance().playerUse(player);
             } catch (Exception e1) {
