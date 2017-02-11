@@ -37,13 +37,14 @@ public class Commander implements CommandExecutor {
         
         // find the subcommand (/game <restart/stop>)
         String arg0 = args[0].toLowerCase();
-        if (!arg0.equals(subcommandRestart) && !arg0.equals(subcommandKillAll)) return false;
+        boolean kill = arg0.equals(subcommandKillAll);
+        if (!arg0.equals(subcommandRestart) && !kill) return false;
         
         // stop the game
-        new EndGame(main, false).runSync();
+        new EndGame(main, !kill).runSync();
         
         // for /game stop, stop the server
-        if (arg0.equals(subcommandKillAll)) Bukkit.getServer().shutdown();
+        if (kill) Bukkit.getServer().shutdown();
         
         // finish
         sender.sendMessage(returnMessage);
