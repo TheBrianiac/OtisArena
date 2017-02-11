@@ -22,6 +22,6 @@ public class RandUtils {
      */
     public static boolean percentChance(int percent) {
         if (percent == 0) return false;
-        return (randomSet.nextInt(101) <= percent);
+        return (percent <= randomSet.nextInt(100) + 1);
     }
 }
