@@ -27,8 +27,8 @@ public class OtisArena extends JavaPlugin {
         Bukkit.getPluginCommand("endgame").setExecutor(new Commander(this));
         
         // load various static classes
-        ConfigUtils.initiate(this);
-        Ability.initiate(this);
+        ConfigUtils.init(this);
+        Ability.init(this);
         
         // register event listeners
         new JoinQuit(this);

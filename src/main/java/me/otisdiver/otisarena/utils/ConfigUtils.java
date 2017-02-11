@@ -19,7 +19,7 @@ public class ConfigUtils {
      * 
      * @param argMain instance of JavaPlugin
      */
-    public static void initiate(OtisArena argMain) {
+    public static void init(OtisArena argMain) {
         if (initiated) return;
         
         main = argMain;
