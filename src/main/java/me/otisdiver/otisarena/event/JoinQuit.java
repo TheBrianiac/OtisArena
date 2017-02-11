@@ -64,7 +64,7 @@ public class JoinQuit extends EasyListener {
         Player player = e.getPlayer();
         game.getActivePlayers().add(player);
         
-        // create inventory
+        // create inventory, heal
         new InventoryBuilder(main, player);
         
         // determine join message
@@ -88,8 +88,10 @@ public class JoinQuit extends EasyListener {
                     game.start();
                 }
                 
-                // teleport player to spawn
+                // teleport player to spawn & heal
                 player.teleport(player.getWorld().getSpawnLocation());
+                player.setHealth(20.0);
+                player.setFoodLevel(20);
                 
                 break;
             case STARTING:
