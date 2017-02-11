@@ -24,7 +24,7 @@ public class OtisArena extends JavaPlugin {
         game = new Game(this);
         
         // register commands
-        Bukkit.getPluginCommand("endgame").setExecutor(new Commander(this));
+        Bukkit.getPluginCommand("game").setExecutor(new Commander(this));
         
         // load various static classes
         ConfigUtils.init(this);
