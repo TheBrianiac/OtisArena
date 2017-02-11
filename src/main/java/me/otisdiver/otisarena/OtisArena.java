@@ -39,14 +39,6 @@ public class OtisArena extends JavaPlugin {
         new ClickHandler(this);
     }
     
-    @Override
-    public void onDisable() {
-        
-        // clear static initializations
-        ConfigUtils.reset();
-        Ability.reset();
-    }
-    
     public Game getGame() {
         return game;
     }

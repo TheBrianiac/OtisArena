@@ -2,7 +2,6 @@ package me.otisdiver.otisarena.task.kit;
 
 import java.util.HashMap;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import me.otisdiver.otisarena.OtisArena;
@@ -10,7 +9,6 @@ import me.otisdiver.otisarena.OtisArena;
 public abstract class Ability {
 
     protected static OtisArena main;
-    private static boolean initiated = false;
     private static HashMap<Player, Long> cooldowns = new HashMap<>();
     
     protected Player player;
@@ -20,18 +18,7 @@ public abstract class Ability {
      * @param argMain instance of JavaPlugin
      */
     public static void init(OtisArena argMain) {
-        if (initiated) return;
-        
         main = argMain;
-        
-        // flag class as initialized
-        initiated = true;
-    }
-    
-    /** Clears static instance of the main class. Ability:initiate must be called again. */
-    public static void reset() {
-        main = null;
-        initiated = false;
     }
     
     /** Runs the ability for the given player.
@@ -40,10 +27,6 @@ public abstract class Ability {
      */
     public void playerUse(Player player) {
         this.player = player;
-        if (!initiated) {
-            Bukkit.getLogger().warning("me.otisdiver.otisarena.task.kit.Ability not initialized!");
-            return;
-        }
         run();
     }
     

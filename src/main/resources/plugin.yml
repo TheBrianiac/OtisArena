@@ -3,7 +3,7 @@ main: me.otisdiver.otisarena.OtisArena
 version: 0.2.0
 author: Brian Schultz
 commands:
-    endgame:
-        description: End a currently running game.
+    game:
+        description: Manage the game.
         permission: gameadmin
-        usage: /endgame <restart? yes/no>
+        usage: /endgame <stop/restart>

@@ -13,27 +13,14 @@ public class ConfigUtils {
     
     private static OtisArena main;
     
-    private static boolean initiated = false;
-    
     /** Artificial constructor.
      * 
      * @param argMain instance of JavaPlugin
      */
     public static void init(OtisArena argMain) {
-        if (initiated) return;
-        
         main = argMain;
         // create a config if one doesn't exist
         main.saveDefaultConfig();
-        
-        // flag class as initiated
-        initiated = true;
-    }
-    
-    /** Clears static instance of the main class. ConfigUtils:initiate must be called again. */
-    public static void reset() {
-        main = null;
-        initiated = false;
     }
     
     public static void reload() {

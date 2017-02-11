@@ -1,6 +1,7 @@
 package me.otisdiver.otisarena;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -8,6 +9,11 @@ import org.bukkit.command.CommandSender;
 import me.otisdiver.otisarena.task.EndGame;
 
 public class Commander implements CommandExecutor {
+    
+    private static final String commandName = "game";
+    private static final String subcommandRestart = "restart";
+    private static final String subcommandKillAll = "stop";
+    private static final String returnMessage = ChatColor.GREEN + "Success!";
     
     private OtisArena main;
     
@@ -19,31 +25,29 @@ public class Commander implements CommandExecutor {
         this.main = main;
     }
     
+    /* new EndGame(main, false).runSync();
+       Bukkit.getServer().shutdown();
+     */
+    
     @Override
     public boolean onCommand(CommandSender sender, Command command, String cmd, String[] args) {
-        if (cmd.equalsIgnoreCase("endgame")) {
-            // not enough args, stop
-            if (args.length != 1) return false;
-            
-            // start a new game or shut the server down based on args
-            String arg = args[0].toLowerCase();
-            if (arg.equals("no")) {
-                new EndGame(main, false).runSync();
-                Bukkit.getServer().shutdown();
-            }
-            else if (arg.equals("yes")) {
-                new EndGame(main, true).runSync();
-            }
-            // not a valid option, stop
-            else {
-                return false;
-            }
-            
-            // haven't stopped yet -> success!
-            return true;
-        }
-        // not one of our commands, stop
-        return false;
+        // make sure the command matches: /game <one argument>
+        if (!cmd.equalsIgnoreCase(commandName)) return false;
+        if (args.length != 1) return false;
+        
+        // find the subcommand (/game <restart/stop>)
+        String arg0 = args[0].toLowerCase();
+        if (!arg0.equals(subcommandRestart) || !arg0.equals(subcommandKillAll)) return false;
+        
+        // stop the game
+        new EndGame(main, false).runSync();
+        
+        // for /game stop, stop the server
+        if (arg0.equals(subcommandKillAll)) Bukkit.getServer().shutdown();
+        
+        // finish
+        sender.sendMessage(returnMessage);
+        return true;
     }
 
 }
