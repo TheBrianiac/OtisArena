@@ -54,6 +54,17 @@ public class ClickHandler extends EasyListener {
             return;
         }
         
+        // check if the item is a chosen kit button, reset kit if it is
+        if (item.getType().equals(Kit.buttonChosen)) {
+            // if the button is for the player's chosen kit, unset their kit
+            if (item.equals(activeButtons.get(player))) {
+                item.setType(Kit.buttonDefault);
+                activeButtons.remove(player);
+                game.setKit(player, null);
+                e.setCancelled(true);
+            }
+        }
+        
         // check if the item is a kit tool and game is running, activate ability if so
         if (item.getType().equals(Kit.abilityTool) && GameState.getCurrent().equals(GameState.PLAYING)) {
             Action act = e.getAction();

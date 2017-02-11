@@ -27,6 +27,9 @@ public class Game {
     // message sent to players when they get a kit
     private final String kitChosenMessage = ChatColor.YELLOW + "Chose kit: %s" + ChatColor.YELLOW + "!";
     
+    // kit name for no kit
+    private final String nullKitName = ChatColor.GRAY + "Random";
+    
     // game starts 20 seconds after this # of players is met
     private final int minimumPlayers = 2;
     
@@ -266,9 +269,10 @@ public class Game {
      * @param kit what Kit to give the player
      */
     public void setKit(Player player, Kit kit) {
-        if (player == null || kit == null) return;
+        if (player == null) return;
         kitChoices.put(player, kit);
-        player.sendMessage(String.format(kitChosenMessage, kit.getDisplayName()));
+        String kitName = kit == null ? nullKitName : kit.getDisplayName();
+        player.sendMessage(String.format(kitChosenMessage, kitName));
     }
     
     /** Retrieves a player's kit choice. Assigns a random kit if none was chosen.
