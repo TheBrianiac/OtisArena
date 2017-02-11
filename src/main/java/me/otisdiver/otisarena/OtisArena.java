@@ -16,6 +16,8 @@ import me.otisdiver.otisarena.utils.ConfigUtils;
 public class OtisArena extends JavaPlugin {
     
     private Game game;
+    
+    @Override
     public void onEnable() {
         
         // instantiate the game class
