@@ -37,7 +37,7 @@ public class Commander implements CommandExecutor {
         
         // find the subcommand (/game <restart/stop>)
         String arg0 = args[0].toLowerCase();
-        if (!arg0.equals(subcommandRestart) || !arg0.equals(subcommandKillAll)) return false;
+        if (!arg0.equals(subcommandRestart) && !arg0.equals(subcommandKillAll)) return false;
         
         // stop the game
         new EndGame(main, false).runSync();
