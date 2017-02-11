@@ -13,7 +13,6 @@ public class RandUtils {
      */
     public static int rand(int max) {
         return randomSet.nextInt(max);
-        // TODO use this method across all classes
     }
     
     /** Get a boolean with a % chance of being true
