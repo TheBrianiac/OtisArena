@@ -2,6 +2,7 @@ package me.otisdiver.otisarena.task.kit;
 
 import java.util.HashMap;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import me.otisdiver.otisarena.OtisArena;
@@ -27,12 +28,22 @@ public abstract class Ability {
         initiated = true;
     }
     
+    /** Clears static instance of the main class. Ability:initiate must be called again. */
+    public static void reset() {
+        main = null;
+        initiated = false;
+    }
+    
     /** Runs the ability for the given player.
      * 
      * @param player who used the ability
      */
     public void playerUse(Player player) {
         this.player = player;
+        if (!initiated) {
+            Bukkit.getLogger().warning("me.otisdiver.otisarena.task.kit.Ability not initialized!");
+            return;
+        }
         run();
     }
     

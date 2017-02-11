@@ -30,6 +30,12 @@ public class ConfigUtils {
         initiated = true;
     }
     
+    /** Clears static instance of the main class. ConfigUtils:initiate must be called again. */
+    public static void reset() {
+        main = null;
+        initiated = false;
+    }
+    
     public static void reload() {
         main.reloadConfig();
     }
