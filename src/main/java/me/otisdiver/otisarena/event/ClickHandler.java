@@ -1,6 +1,6 @@
 package me.otisdiver.otisarena.event;
 
-import java.util.HashMap;
+import java.util.WeakHashMap;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -18,7 +18,7 @@ import me.otisdiver.otisarena.game.Kit;
 public class ClickHandler extends EasyListener {
     
     private static final String errorChat = ChatColor.DARK_RED + "Internal error! Check console or contact a developer.";
-    private static HashMap<Player, ItemStack> activeButtons = new HashMap<>();
+    private WeakHashMap<Player, ItemStack> activeButtons = new WeakHashMap<>();
     
     private Game game;
     

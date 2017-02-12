@@ -3,7 +3,7 @@ package me.otisdiver.otisarena.game;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.WeakHashMap;
 
 import org.bukkit.ChatColor;
 import org.bukkit.World;
@@ -46,7 +46,7 @@ public class Game {
     private ArrayList<Player> activePlayers = new ArrayList<Player>();
     
     // track player kits
-    private HashMap<Player, Kit> kitChoices = new HashMap<Player, Kit>();
+    private WeakHashMap<Player, Kit> kitChoices = new WeakHashMap<Player, Kit>();
     
     // countdown tasks (before game is started)
     private Countdown interval5;
