@@ -23,6 +23,9 @@ public class StartGame extends Task {
     private static final int warningSeconds = 30;
     private static final String warningMessage = " " + ChatColor.RED + warningSeconds + " seconds remaining!";
 
+    private static Task warning;
+    private static Task endGame;
+    
     private final String worldName;
     private final Game game;
     
@@ -79,14 +82,27 @@ public class StartGame extends Task {
         new AdvanceState(main).runFuture(221);
         
         // schedule warning <warningSeconds> seconds before game ends
-        new FutureBroadcast(main, warningMessage).runFuture(gameLengthTicks - (warningSeconds * 20));
+        warning = new FutureBroadcast(main, warningMessage);
+        warning.runFuture(gameLengthTicks - (warningSeconds * 20));
         
         // end game after gameLengthTicks
-        new EndGame(main, true).runFuture(gameLengthTicks);
+        endGame = new EndGame(main, true);
+        endGame.runFuture(gameLengthTicks);
         
         // go to next state - STARTING
         GameState.advance();
         
+    }
+    
+    public static void cancelEndTasks() {
+        if (warning != null) {
+            warning.cancel();
+            warning = null;
+        }
+        if (endGame != null) {
+            endGame.cancel();
+            endGame = null;
+        }
     }
 
 }

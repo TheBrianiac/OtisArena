@@ -7,6 +7,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 import me.otisdiver.otisarena.task.EndGame;
+import me.otisdiver.otisarena.task.StartGame;
 
 public class Commander implements CommandExecutor {
     
@@ -41,6 +42,7 @@ public class Commander implements CommandExecutor {
         if (!arg0.equals(subcommandRestart) && !kill) return false;
         
         // stop the game
+        StartGame.cancelEndTasks();
         new EndGame(main, !kill).runSync();
         
         // for /game stop, stop the server
