@@ -15,5 +15,4 @@ public abstract class EasyListener implements Listener {
         // self-registration
         Bukkit.getPluginManager().registerEvents(this, main);
     }
-
 }

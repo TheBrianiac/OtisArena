@@ -13,7 +13,6 @@ public class CountMessage extends FutureBroadcast {
     
     @Override
     public void run() {
-        
         // if the count-down hasn't been cancelled, run the code (from FutureBroadcast)
         if (!parent.isOverridden()) {
             super.run();

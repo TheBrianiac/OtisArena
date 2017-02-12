@@ -17,13 +17,10 @@ public class FutureBroadcast extends Task {
      * @param message the chat message, with hex codes preceded by &
      */
     public FutureBroadcast(OtisArena main, String message) {
-        
         super(main);
         
-        // change color codes (e.g. &e or &2) to codes Minecraft understands
+        // format message
         message = ChatColor.translateAlternateColorCodes(hexMarker, message);
-        
-        // save message for later
         this.message = message;
     }
     

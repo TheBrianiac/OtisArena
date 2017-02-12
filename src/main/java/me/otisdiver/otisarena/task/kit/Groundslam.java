@@ -20,9 +20,5 @@ public class Groundslam extends Ability {
                 target.setVelocity(target.getLocation().getDirection().multiply(-1));
             }
         }
-        
     }
-    
-    
-    
 }

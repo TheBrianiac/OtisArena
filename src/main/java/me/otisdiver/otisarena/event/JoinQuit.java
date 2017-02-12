@@ -18,27 +18,13 @@ import me.otisdiver.otisarena.utils.ConfigUtils;
 
 public class JoinQuit extends EasyListener {
     
-    // Configurables //
+    private static final String joinMessageDefault = null;
+    private static final String joinMessageRecruiting = ChatColor.GOLD + "%s joined!";
+    private static final String quitMessageDefault = ChatColor.GRAY + "%s quit.";
+    private static final String quitMessageRecruiting = ChatColor.GRAY + "%s quit.";
+    private static final String gameInProgress = ChatColor.YELLOW + " A game is currently in process. Please wait for the next one to start.";
     
-    // join message when the game isn't recruiting
-    private final String joinMessageDefault = null;
-    
-    // join message when the game is recruiting
-    private final String joinMessageRecruiting = ChatColor.GOLD + "%s joined!";
-    
-    // quit message when the game isn't recruiting
-    private final String quitMessageDefault = ChatColor.GRAY + "%s quit.";
-    
-    // quit message when the game is recruiting
-    private final String quitMessageRecruiting = ChatColor.GRAY + "%s quit.";
-    
-    // chat message sent to people joining during games
-    private final String gameInProgress = ChatColor.YELLOW + " A game is currently in process. Please wait for the next one to start.";
-    
-    // Other Class Members //
-
     private Game game;
-    
     private final int minimumPlayers;
     
     /** JoinQuit handles all player join events.
@@ -175,12 +161,8 @@ public class JoinQuit extends EasyListener {
     }
     
     private void makeSpectator(Player player) {
-        
         player.teleport(ConfigUtils.getRandomSpawn(game.getActiveWorld()));
-        
         player.setGameMode(GameMode.SPECTATOR);
-        
         player.sendMessage(gameInProgress);
-        
     }
 }

@@ -16,31 +16,18 @@ import me.otisdiver.otisarena.utils.RandUtils;
 
 public class Game {
     
-    // Configurables //
-    
-    // name of the lobby world
-    private final String lobbyName = "lobby";
-    
-    // message sent to players when they join a team
-    private final String teamJoinMessage = ChatColor.YELLOW + "You're on the %s%s Team" + ChatColor.YELLOW + "!";
-    
-    // message sent to players when they get a kit
-    private final String kitChosenMessage = ChatColor.YELLOW + "Chose kit: %s" + ChatColor.YELLOW + "!";
-    
-    // kit name for no kit
-    private final String nullKitName = ChatColor.GRAY + "Random";
-    
-    // game starts 20 seconds after this # of players is met
-    private final int minimumPlayers = 2;
-    
-    // message format for countdown messages
-    private final String countdownMessage = ChatColor.DARK_GREEN + " Game starting in " + ChatColor.YELLOW + "%d" + ChatColor.DARK_GREEN + " seconds!";
+    private static final String lobbyName        = "lobby";
+    private static final String teamJoinMessage  = ChatColor.YELLOW + "You're on the %s%s Team" + ChatColor.YELLOW + "!";
+    private static final String kitChosenMessage = ChatColor.YELLOW + "Chose kit: %s" + ChatColor.YELLOW + "!";
+    private static final String nullKitName      = ChatColor.GRAY + "Random";
+    private static final String countdownMessage = ChatColor.DARK_GREEN + " Game starting in " + ChatColor.YELLOW + "%d" + ChatColor.DARK_GREEN + " seconds!";
+    private static final int    minimumPlayers   = 2;
     
     // Other Class Members // 
     
-    private OtisArena main;
-    private final Team[]      teams;
-    private World             activeWorld;
+    private OtisArena    main;
+    private final Team[] teams;
+    private World        activeWorld;
     
     // a list of all people playing (people conditionally added by events.Join)
     private ArrayList<Player> activePlayers = new ArrayList<Player>();
@@ -245,7 +232,6 @@ public class Game {
     
     /** Adds a point to the given player's team. */
     public void playerScore(Player player) {
-        
         // add a score to the player's team
         getPlayerTeam(player).addScore();
     }
@@ -266,8 +252,7 @@ public class Game {
     /** Remembers a player's kit choice.
      * 
      * @param player what player to give the kit to
-     * @param kit what Kit to give the player
-     */
+     * @param kit what Kit to give the player */
     public void setKit(Player player, Kit kit) {
         if (player == null) return;
         kitChoices.put(player, kit);
@@ -278,8 +263,7 @@ public class Game {
     /** Retrieves a player's kit choice. Assigns a random kit if none was chosen.
      * 
      * @param player player whose kit is desired
-     * @return the player's chosen kit, or random if none
-     */
+     * @return the player's chosen kit, or random if none */
     public Kit getKit(Player player) {
         Kit value = kitChoices.get(player);
         if (value == null) {
@@ -289,5 +273,4 @@ public class Game {
         }
         return value;
     }
-    
 }

@@ -5,18 +5,12 @@ import me.otisdiver.otisarena.OtisArena;
 public class Countdown extends Task {
     
     private final int duration;
-    
     private final int interval;
-    
     private final int numberOfMessages;
-    
     private final String format;
-    
     private boolean override = false;
     
     public Countdown(OtisArena main, int duration, int interval, String format) {
-        
-        // assign class members
         super(main);
         this.duration = duration;
         this.interval = interval;
@@ -38,14 +32,9 @@ public class Countdown extends Task {
             int count = i * interval;
             String message = String.format(format, count);
             
-            // in how many ticks will this count be sent?
-            int intervalTicksValue = count * 20;
-            
-            // how far in the future to send it
-            // (400 ticks - # of seconds * 20 ticks/second)
-            int delay = ticksUntilCompletion - intervalTicksValue;
-            
             // schedule the message
+            // (400 ticks - # of seconds * 20 ticks/second)
+            int delay = ticksUntilCompletion - (count * 20);
             new CountMessage(main, this, message).runFuture(delay);
         }
     }

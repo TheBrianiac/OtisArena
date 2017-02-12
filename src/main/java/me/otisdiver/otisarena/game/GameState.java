@@ -1,9 +1,6 @@
 package me.otisdiver.otisarena.game;
 
-import org.bukkit.Bukkit;
-
 public enum GameState {
-    
     // finite state machine - event handlers will run different code depending on which part of the game we're in
     
     // recruiting players - nothing happening, just waiting to hit min. player count
@@ -56,9 +53,6 @@ public enum GameState {
                 setCurrent(RECRUITING);
             break;
         }
-        
-        // debug message
-        Bukkit.getLogger().info("Game is now " + current);
     }
 
 }

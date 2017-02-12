@@ -21,7 +21,6 @@ public abstract class Task implements Runnable {
      * @param ticks how many ticks in the future to run (approximately 20 ticks per second)
      */
     public void runFuture(int ticks) {
-        
         // prevent a task from being run multiple times
         if (scheduled) return;
         else scheduled = true;
@@ -33,7 +32,6 @@ public abstract class Task implements Runnable {
     
     /** Runs the task in the main thread. */
     public void runSync() {
-        
         // prevent a task from being run multiple times
         if (scheduled) return;
         else scheduled = true;
@@ -45,7 +43,6 @@ public abstract class Task implements Runnable {
     
     /** Tells Bukkit not to run the task anymore. */
     public void cancel() {
-        
         // prevent a nonexistent task from being run
         if (!scheduled) return;
         else scheduled = false;

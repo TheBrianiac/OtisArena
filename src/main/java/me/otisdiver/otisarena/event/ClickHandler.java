@@ -79,6 +79,5 @@ public class ClickHandler extends EasyListener {
             return;
         }
     }
-    
 }
  

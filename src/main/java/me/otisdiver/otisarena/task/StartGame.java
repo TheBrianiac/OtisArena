@@ -18,24 +18,17 @@ import me.otisdiver.otisarena.utils.ConfigUtils;
 
 public class StartGame extends Task {
     
-    private final String countdownMessage = ChatColor.AQUA + " Game starting in " + ChatColor.YELLOW + "%s seconds!";
-    
-    private final int gameLengthTicks = 360 * 20; // average 20 ticks/second
-    
-    private final int warningSeconds = 30;
-    
-    private final String warningMessage = " " + ChatColor.RED + warningSeconds + " seconds remaining!";
+    private static final String countdownMessage = ChatColor.AQUA + " Game starting in " + ChatColor.YELLOW + "%s seconds!";
+    private static final int gameLengthTicks = 360 * 20; // average 20 ticks/second
+    private static final int warningSeconds = 30;
+    private static final String warningMessage = " " + ChatColor.RED + warningSeconds + " seconds remaining!";
 
     private final String worldName;
-    
     private final Game game;
     
     public StartGame(OtisArena main) {
-        
         super(main);
-        
         game = main.getGame();
-        
         worldName = ConfigUtils.getRandomWorld();
     }
     
@@ -45,18 +38,15 @@ public class StartGame extends Task {
         // go to next state - LOADING
         GameState.advance();
         
-        // assign teams
+        // assign teams randomly
         game.distributePlayersTeams(game.getActivePlayers());
         
-        // load the (random) arena
+        // load the (random) arena, send players in
         World arena = Bukkit.createWorld(new WorldCreator(worldName));
         game.setActiveWorld(arena);
-        
-        // send players into game world
         HashMap<Location, Team> usedLocations = new HashMap<Location, Team>();
         
         for (Player player : game.getActivePlayers()) {
-            
             Team playerTeam = game.getPlayerTeam(player);
             
             boolean spawned = false;

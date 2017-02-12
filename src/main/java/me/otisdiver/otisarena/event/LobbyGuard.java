@@ -57,5 +57,4 @@ public class LobbyGuard extends EasyListener {
     private void cancel(Cancellable e) {
         e.setCancelled(true);
     }
-    
 }
