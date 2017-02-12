@@ -14,6 +14,8 @@ import me.otisdiver.otisarena.OtisArena;
 import me.otisdiver.otisarena.game.Game;
 import me.otisdiver.otisarena.game.GameState;
 import me.otisdiver.otisarena.game.InventoryBuilder;
+import me.otisdiver.otisarena.task.EndGame;
+import me.otisdiver.otisarena.task.StartGame;
 import me.otisdiver.otisarena.utils.ConfigUtils;
 
 public class JoinQuit extends EasyListener {
@@ -152,12 +154,26 @@ public class JoinQuit extends EasyListener {
                 }
                 
                 break;
+            case LOADING:
+                quitDuringGame(player);
+            case STARTING:
+                quitDuringGame(player);
+            case PLAYING:
+                quitDuringGame(player);
             default:
                 break;
         }
         
         // apply the quit message
         e.setQuitMessage(quitMessage);
+    }
+    
+    private void quitDuringGame(Player player) {
+        // if this causes the number of players to fall below minimum, stop the count down
+        if (game.getActivePlayers().size() +1 == minimumPlayers) {
+            StartGame.cancelEndTasks();
+            new EndGame(main, true).runSync();
+        }
     }
     
     private void makeSpectator(Player player) {
