@@ -1,6 +1,6 @@
 package me.otisdiver.otisarena.task.kit;
 
-import java.util.HashMap;
+import java.util.WeakHashMap;
 
 import org.bukkit.entity.Player;
 
@@ -9,7 +9,7 @@ import me.otisdiver.otisarena.OtisArena;
 public abstract class Ability {
 
     protected static OtisArena main;
-    private static HashMap<Player, Long> cooldowns = new HashMap<>();
+    private static WeakHashMap<Player, Long> cooldowns = new WeakHashMap<>();
     
     protected Player player;
     
