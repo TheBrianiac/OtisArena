@@ -2,12 +2,14 @@ package me.otisdiver.otisarena.event;
 
 import java.util.WeakHashMap;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.ItemStack;
 
 import me.otisdiver.otisarena.OtisArena;
@@ -27,9 +29,13 @@ public class ClickHandler extends EasyListener {
         game = main.getGame();
     }
     
-    // this event, despite its name, represents a right click with an item!
     @EventHandler(priority = EventPriority.HIGHEST)
     public void onClick(PlayerInteractEvent e) {
+        // only pay attention to right click events with the main hand
+        Action act = e.getAction();
+        if (!(act.equals(Action.RIGHT_CLICK_AIR) || act.equals(Action.RIGHT_CLICK_BLOCK))) return;
+        if (e.getHand() != EquipmentSlot.HAND) return;
+        
         Player player = e.getPlayer();
         ItemStack item = player.getInventory().getItemInMainHand();
         
@@ -55,7 +61,7 @@ public class ClickHandler extends EasyListener {
         }
         
         // check if the item is a chosen kit button, reset kit if it is
-        if (item.getType().equals(Kit.buttonChosen)) {
+        else if (item.getType().equals(Kit.buttonChosen)) {
             // if the button is for the player's chosen kit, unset their kit
             if (item.equals(activeButtons.get(player))) {
                 item.setType(Kit.buttonDefault);
@@ -63,13 +69,11 @@ public class ClickHandler extends EasyListener {
                 game.setKit(player, null);
                 e.setCancelled(true);
             }
+            return;
         }
         
         // check if the item is a kit tool and game is running, activate ability if so
         if (item.getType().equals(Kit.abilityTool) && GameState.getCurrent().equals(GameState.PLAYING)) {
-            Action act = e.getAction();
-            if (!(act.equals(Action.RIGHT_CLICK_AIR) || act.equals(Action.RIGHT_CLICK_BLOCK))) return;
-            
             try {
                 game.getKit(player).getAbility().newInstance().playerUse(player);
             } catch (Exception e1) {
