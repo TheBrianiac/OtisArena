@@ -1,6 +1,6 @@
 name: OtisArena
 main: me.otisdiver.otisarena.OtisArena
-version: 0.2.0
+version: 1.0.0
 author: Brian Schultz
 commands:
     game:
